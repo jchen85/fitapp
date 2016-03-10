@@ -4,6 +4,7 @@ import session from 'express-session';
 import { FitbitOAuth2Strategy } from 'passport-fitbit-oauth2';
 import passport from 'passport';
 import { app } from './server';
+import { addUser } from '../db/addUser';
 
 app.use(cookieParser());
 app.use(bodyParser.json());
@@ -26,7 +27,7 @@ app.use(passport.session({
   saveUninitialized: true
 }));
 
-var fitbitStrategy = new FitbitOAuth2Strategy({
+const fitbitStrategy = new FitbitOAuth2Strategy({
   clientID: CLIENT_ID,
   clientSecret: CLIENT_SECRET,
   scope: ['activity', 'heartrate', 'location', 'profile'],
@@ -51,7 +52,7 @@ passport.deserializeUser((obj, done) => {
   done(null, obj);
 });
 
-var fitbitAuthenticate = passport.authenticate('fitbit', {
+const fitbitAuthenticate = passport.authenticate('fitbit', {
   successRedirect: '/auth/fitbit/success',
   failureRedirect: '/auth/fitbit/failure'
 });
@@ -60,7 +61,9 @@ app.get('/auth/fitbit', fitbitAuthenticate);
 app.get('/auth/fitbit/callback', fitbitAuthenticate);
 
 app.get('/auth/fitbit/success', (req, res, next) => {
-  res.send(req.user);
+  addUser(req.user.profile).then(() => {
+    res.redirect('/');
+  });
 });
 
 export { passport };
