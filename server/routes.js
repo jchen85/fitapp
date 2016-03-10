@@ -1,3 +1,4 @@
+import path from 'path';
 import { passport } from './fitbitauth';
 import { app } from './server';
 
@@ -10,5 +11,5 @@ const loggedIn = (req, res, next) => {
 };
 
 app.get('/', loggedIn, (req, res) => {
-  res.send(req.user);
+  res.sendFile(path.join(__dirname, '../index.html'));
 });
