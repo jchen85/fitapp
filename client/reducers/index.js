@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import counter from './counter';
 import user from './user';
+import challenges from './challenges';
 
 /**
  * combineReducers is important to understand. As your app might grow in size
@@ -17,7 +18,8 @@ import user from './user';
  */
 const rootReducer = combineReducers({
   counter, // you might be used to: counter: counter,
-  user
+  user,
+  challenges
 });
 
 export default rootReducer;

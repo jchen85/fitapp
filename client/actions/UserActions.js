@@ -1,28 +1,4 @@
-import { INCREMENT_COUNTER, DECREMENT_COUNTER, UPDATE_USER_INFO } from '../constants/ActionTypes';
-
-export function increment() {
-  return {
-    type: INCREMENT_COUNTER
-  };
-}
-
-export function decrement() {
-  return {
-    type: DECREMENT_COUNTER
-  };
-}
-
-export function incrementIfOdd() {
-  return (dispatch, getState) => {
-    const { counter } = getState();
-
-    if (counter % 2 === 0) {
-      return;
-    }
-
-    dispatch(increment());
-  };
-}
+import { UPDATE_USER_INFO } from '../constants/ActionTypes';
 
 export function fetchUserInfo() {
   return (dispatch) => {
@@ -41,4 +17,4 @@ export function fetchUserInfo() {
         });
       });
   };
-};
+}
