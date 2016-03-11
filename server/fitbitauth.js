@@ -61,8 +61,12 @@ app.get('/auth/fitbit', fitbitAuthenticate);
 app.get('/auth/fitbit/callback', fitbitAuthenticate);
 
 app.get('/auth/fitbit/success', (req, res, next) => {
-  addUser(req.user.profile).then(() => {
+  addUser(req.user)
+  .then(() => {
     res.redirect('/');
+  })
+  .catch((err) => {
+    if (err) throw err;
   });
 });
 

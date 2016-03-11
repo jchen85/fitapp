@@ -2,6 +2,7 @@ import path from 'path';
 import { passport } from './fitbitauth';
 import { app } from './server';
 import request from 'request';
+import { getUser } from '../db/getUser';
 
 const loggedIn = (req, res, next) => {
   if (req.user) {
@@ -23,4 +24,14 @@ app.get('/', loggedIn, (req, res) => {
   //   res.send(result);
   // });
   res.sendFile(path.join(__dirname, '../index.html'));
+});
+
+app.get('/users/profile', loggedIn, (req, res) => {
+  getUser(req.user.profile.id)
+  .then((result) => {
+    res.json(result);
+  })
+  .catch((err) => {
+    if (err) throw err;
+  });
 });
