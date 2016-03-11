@@ -1,7 +1,5 @@
 import path from 'path';
-import { passport } from './fitbitauth';
 import { app } from './server';
-import request from 'request';
 import { getUser } from '../db/getUser';
 
 const loggedIn = (req, res, next) => {

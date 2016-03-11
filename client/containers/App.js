@@ -11,6 +11,11 @@ import Footer from '../components/Footer';
  * component to make the Redux store available to the rest of the app.
  */
 export default class App extends Component {
+  componentDidMount() {
+    const { actions } = this.props;
+    actions.fetchUserInfo();
+  }
+
   render() {
     // we can use ES6's object destructuring to effectively 'unpack' our props
     const { counter, actions } = this.props;

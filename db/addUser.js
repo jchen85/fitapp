@@ -1,5 +1,5 @@
 import r from 'rethinkdb';
-import { connection } from './config';
+import { connection } from './connection';
 import request from 'request-promise';
 
 const addUser = (user) => {
