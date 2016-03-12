@@ -1,4 +1,6 @@
 import React, { Component, PropTypes } from 'react';
+import '../styles/challenge.scss';
+import moment from 'moment';
 
 export default class Challenge extends Component {
   constructor(props, context) {
@@ -23,10 +25,37 @@ export default class Challenge extends Component {
                 <button disabled>Locked</button> :
                 <button onClick={buttonAction}>{buttonText}</button>;
 
+    let goalDescription = null;
+    if (challenge.category === 'calories') {
+      goalDescription = `Lose ${challenge.requirement} calories!`;
+    }
+
+    if (challenge.category === 'steps') {
+      goalDescription = `Take ${challenge.requirement} steps!`;
+    }
+
     return (
-      <div>
-        {challenge.category}
-        {button}
+      <div className="challenge">
+        <header className="challenge__header">
+          <span>Challenge ends {moment(challenge.end_time).fromNow()}</span>
+        </header>
+        <div className="challenge__details">
+          <div className="challenge__image">
+            <img src="http://www.svgcuts.com/fsvgfotw/2010/fsvgfotw_2010_08_04.png" />
+          </div>
+          <div className="challenge__mainInfo">
+            <h2>{goalDescription}</h2>
+            <div className="challenge__participants">
+              Participants: {challenge.members.length}
+            </div>
+          </div>
+          <div className="challenge__cost_endTime_container">
+            <div className="challenge__cost">
+              Cost: {challenge.wager} points
+            </div>
+            {button}
+          </div>
+        </div>
       </div>
     );
   }

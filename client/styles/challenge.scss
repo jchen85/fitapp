@@ -1,0 +1,21 @@
+.challenge {
+  font-size: 2em;
+  background-color: white;
+  border-radius: 1%;
+  margin: 0.5em;
+}
+
+.challenge__header {
+  display: flex;
+  justify-content: center;
+}
+
+.challenge__details {
+  display: flex;
+}
+
+.challenge__image img {
+  width: auto;
+  height: 3em;
+}
+

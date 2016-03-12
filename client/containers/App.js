@@ -28,6 +28,7 @@ export default class App extends Component {
     return (
       <div className="main-app-container">
         <div className="main-app-nav">Simple Redux Boilerplate</div>
+        <h2>Challenges</h2>
         <Challenges actions={actions} challenges={challenges} user={user} />
         <Footer />
       </div>

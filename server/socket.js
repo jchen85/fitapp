@@ -74,9 +74,11 @@ export const broadcastChanges = () => {
   r.db('fitapp').table('challenges').changes().run(connection)
   .then(cursor => {
     cursor.eachAsync(row => {
-      const newObj = {};
-      newObj[row.new_val.id] = row.new_val;
-      io.sockets.emit('updateChallenges', newObj);
+      if (row.new_val) {
+        const newObj = {};
+        newObj[row.new_val.id] = row.new_val;
+        io.sockets.emit('updateChallenges', newObj);
+      }
     });
   })
   .catch(err => {

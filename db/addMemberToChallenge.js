@@ -35,6 +35,9 @@ const addMemberToChallenge = (challengeId, userId) => {
       // use setInsert to ensure members don't get inserted twice
       .update({ members: r.row('members').setInsert(userId) })
       .run(connection);
+    })
+    .catch(err => {
+      if (err) throw err;
     });
 };
 
