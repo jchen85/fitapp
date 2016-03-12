@@ -1,6 +1,7 @@
 import { io } from './server';
 import { getChallenges } from '../db/getChallenges';
 import { addMemberToChallenge } from '../db/addMemberToChallenge';
+import { removeMemberFromChallenge } from '../db/removeMemberFromChallenge';
 import r from 'rethinkdb';
 import { connection } from '../db/connection';
 
@@ -22,6 +23,13 @@ io.on('connection', (socket) => {
 
   socket.on('addMember', data => {
     addMemberToChallenge(data.challengeId, data.userId)
+    .catch(err => {
+      if (err) throw err;
+    });
+  });
+
+  socket.on('removeMember', data => {
+    removeMemberFromChallenge(data.challengeId, data.userId)
     .catch(err => {
       if (err) throw err;
     });

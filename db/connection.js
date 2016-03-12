@@ -2,6 +2,8 @@ import r from 'rethinkdb';
 import config from './config';
 let connection = null;
 
+// This file creates our tables if they don't already exist, then recreates the challenges
+
 r.connect(config, (err, conn) => {
   if (err) throw err;
   connection = conn;

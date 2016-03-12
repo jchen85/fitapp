@@ -12,6 +12,7 @@ r.db('fitapp').table('challenges').insert({
   requirement: 5000,
   wager: 100,
   members: [],
+  time_remaining: 10
 }, { conflict: 'replace' }).run(connection, (err) => {
   if (err) throw err;
 });
@@ -22,6 +23,7 @@ r.db('fitapp').table('challenges').insert({
   requirement: 1000,
   wager: 100,
   members: [],
+  time_remaining: 10
 }, { conflict: 'replace' }).run(connection, (err) => {
   if (err) throw err;
 });
@@ -32,6 +34,7 @@ r.db('fitapp').table('challenges').insert({
   requirement: 1000,
   wager: 100,
   members: [],
+  time_remaining: 10
 }, { conflict: 'replace' }).run(connection, (err) => {
   if (err) throw err;
 });
@@ -42,6 +45,7 @@ r.db('fitapp').table('challenges').insert({
   requirement: 500,
   wager: 100,
   members: [],
+  time_remaining: 10
 }, { conflict: 'replace' }).run(connection, (err) => {
   if (err) throw err;
 });
