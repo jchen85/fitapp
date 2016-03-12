@@ -5,7 +5,8 @@ export default function user(state = { id: 0, name: 'Loading...' }, action) {
     case UPDATE_USER_INFO:
       return Object.assign({}, state, {
         id: action.userInfo.id,
-        name: action.userInfo.name
+        name: action.userInfo.name,
+        points: action.userInfo.points
       });
     default:
       return state;

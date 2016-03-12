@@ -1,16 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import Challenge from '../components/Challenge';
-import { socket } from '../index';
 
 export default class Challenges extends Component {
-  componentDidMount() {
-    const { actions } = this.props;
-    actions.fetchUserInfo();
-    socket.on('updateChallenges', (data) => {
-      actions.updateChallenges(data);
-    });
-  }
-
   render() {
     const { challenges, actions, user } = this.props;
 

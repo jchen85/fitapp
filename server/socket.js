@@ -4,8 +4,10 @@ import { addMemberToChallenge } from '../db/addMemberToChallenge';
 import { removeMemberFromChallenge } from '../db/removeMemberFromChallenge';
 import r from 'rethinkdb';
 import { connection } from '../db/connection';
+import { challengeCost } from '../constants/gameSettings';
 
 io.on('connection', (socket) => {
+  // give each new connection the full set of challenges
   getChallenges()
   .then(cursor => {
     const challengesObj = {};
@@ -22,16 +24,44 @@ io.on('connection', (socket) => {
   });
 
   socket.on('addMember', data => {
-    addMemberToChallenge(data.challengeId, data.userId)
-    .catch(err => {
-      if (err) throw err;
+    r.db('fitapp').table('users').get(data.userId)
+    .update(row => {
+      return {
+        points: row('points').sub(challengeCost)
+      };
+    })
+    .run(connection)
+    .then(() => {
+      addMemberToChallenge(data.challengeId, data.userId)
+      .catch(err => {
+        if (err) throw err;
+      });
     });
   });
 
   socket.on('removeMember', data => {
-    removeMemberFromChallenge(data.challengeId, data.userId)
-    .catch(err => {
-      if (err) throw err;
+    r.db('fitapp').table('users').get(data.userId)
+    .update(row => {
+      return {
+        points: row('points').add(challengeCost)
+      };
+    })
+    .run(connection)
+    .then(() => {
+      removeMemberFromChallenge(data.challengeId, data.userId)
+      .catch(err => {
+        if (err) throw err;
+      });
+    });
+  });
+
+  // subscribe user to changefeed of his profile in order to keep client state consistent with db
+  socket.on('joinGame', userId => {
+    r.db('fitapp').table('users').get(userId).changes().run(connection)
+    .then(cursor => {
+      cursor.eachAsync(row => {
+        socket.emit('updateUserInfo', row.new_val);
+      });
     });
   });
 });

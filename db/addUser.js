@@ -1,6 +1,7 @@
 import r from 'rethinkdb';
 import { connection } from './connection';
 import request from 'request-promise';
+import { startingPoints } from '../constants/gameSettings';
 
 const addUser = (user) => {
   return request({
@@ -13,8 +14,9 @@ const addUser = (user) => {
   .then((result) => {
     return r.db('fitapp').table('users').insert({
       id: user.profile.id,
-      name: user.profile.displayName
-    }, { conflict: 'update' }
+      name: user.profile.displayName,
+      points: startingPoints
+    }, { conflict: 'replace' }
     ).run(connection);
   });
 };

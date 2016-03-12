@@ -5,11 +5,22 @@ import * as UserActions from '../actions/UserActions';
 import * as ChallengesActions from '../actions/ChallengesActions';
 import Footer from '../components/Footer';
 import Challenges from './Challenges';
+import { socket } from '../index';
 
 export default class App extends Component {
   componentDidMount() {
     const { actions } = this.props;
+
+    // initial fetch of user info (over HTTP), subsequent updates of user info happen over sockets
     actions.fetchUserInfo();
+
+    socket.on('updateChallenges', data => {
+      actions.updateChallenges(data);
+    });
+
+    socket.on('updateUserInfo', data => {
+      actions.updateUserInfo(data);
+    });
   }
 
   render() {

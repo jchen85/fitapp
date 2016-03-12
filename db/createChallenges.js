@@ -1,6 +1,7 @@
 import r from 'rethinkdb';
 import { connection } from './connection';
 import { broadcastChanges } from '../server/socket';
+import { challengeTimer } from '../constants/gameSettings';
 
 // Attach listener to challenges table and broadcast changes to all socket-connected clients
 broadcastChanges();
@@ -12,7 +13,7 @@ r.db('fitapp').table('challenges').insert({
   requirement: 5000,
   wager: 100,
   members: [],
-  time_remaining: 10
+  time_remaining: challengeTimer
 }, { conflict: 'replace' }).run(connection, (err) => {
   if (err) throw err;
 });
@@ -23,7 +24,7 @@ r.db('fitapp').table('challenges').insert({
   requirement: 1000,
   wager: 100,
   members: [],
-  time_remaining: 10
+  time_remaining: challengeTimer
 }, { conflict: 'replace' }).run(connection, (err) => {
   if (err) throw err;
 });
@@ -34,7 +35,7 @@ r.db('fitapp').table('challenges').insert({
   requirement: 1000,
   wager: 100,
   members: [],
-  time_remaining: 10
+  time_remaining: challengeTimer
 }, { conflict: 'replace' }).run(connection, (err) => {
   if (err) throw err;
 });
@@ -45,7 +46,7 @@ r.db('fitapp').table('challenges').insert({
   requirement: 500,
   wager: 100,
   members: [],
-  time_remaining: 10
+  time_remaining: challengeTimer
 }, { conflict: 'replace' }).run(connection, (err) => {
   if (err) throw err;
 });
