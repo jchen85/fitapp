@@ -2,6 +2,7 @@ import r from 'rethinkdb';
 import { connection } from './connection';
 import { broadcastChanges } from '../server/socket';
 import { challengeTimer } from '../constants/gameSettings';
+import { endChallenge } from './endChallenge';
 
 // Attach listener to challenges table and broadcast changes to all socket-connected clients
 broadcastChanges();
@@ -35,7 +36,7 @@ const createChallenge = (category, requirement, wager, timer) => {
   // After half the challengeTimer has passed, set disabled to true
   // This is to make it so users can't leave past the halfway point of the challenge
   // Client will be subscribed to changefeed of challenges by then
-  setInterval(() => {
+  setTimeout(() => {
     r.db('fitapp').table('challenges').get(key)
     .update({ disabled: true })
     .run(connection, (err) => {
@@ -44,12 +45,14 @@ const createChallenge = (category, requirement, wager, timer) => {
   }, challengeTimer / 2 * 1000);
 
   // Do the same for ended when end_time is reached
-  setInterval(() => {
+  setTimeout(() => {
     r.db('fitapp').table('challenges').get(key)
     .update({ ended: true })
     .run(connection, (err) => {
       if (err) throw err;
     });
+
+    endChallenge(key);
   }, challengeTimer * 1000);
 };
 
