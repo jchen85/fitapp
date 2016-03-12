@@ -17,14 +17,14 @@ export default class Counter extends Component {
                         () => actions.removeMember(challenge.id, user.id) :
                         () => actions.addMember(challenge.id, user.id);
 
-    // const buttonAction = memberOrNot ?
-    //               () => socket.emit('removeMember', { challengeId: challenge.id, userId: user.id }) :
-    //               () => socket.emit('addMember', { challengeId: challenge.id, userId: user.id });
+    const button = challenge.disabled && memberOrNot ?
+                <button disabled>Locked</button> :
+                <button onClick={buttonAction}>{buttonText}</button>;
 
     return (
       <div>
         {challenge.category}
-        <button onClick={buttonAction}>{buttonText}</button>
+        {button}
       </div>
     );
   }
