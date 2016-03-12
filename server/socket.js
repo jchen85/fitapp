@@ -26,20 +26,22 @@ io.on('connection', (socket) => {
       if (err) throw err;
     });
   });
+});
 
-
-  // Subscribe to the changefeed for challenges: https://www.rethinkdb.com/docs/changefeeds/javascript/
-  // Then send the updated challenges back to client
+// Subscribe to the changefeed for challenges: https://www.rethinkdb.com/docs/changefeeds/javascript/
+// Then send the updated challenges back to connected clients
+// This is wrapped in a function so that it can be called after the challenges table is created upon
+// server start (db/createChallenges.js)
+export const broadcastChanges = () => {
   r.db('fitapp').table('challenges').changes().run(connection)
   .then(cursor => {
     cursor.eachAsync(row => {
       const newObj = {};
       newObj[row.new_val.id] = row.new_val;
-      socket.emit('updateChallenges', newObj);
+      io.sockets.emit('updateChallenges', newObj);
     });
   })
   .catch(err => {
     if (err) throw err;
   });
-
-});
+};

@@ -1,6 +1,11 @@
 import r from 'rethinkdb';
 import { connection } from './connection';
+import { broadcastChanges } from '../server/socket';
 
+// Attach listener to challenges table and broadcast changes to all socket-connected clients
+broadcastChanges();
+
+// Create documents for every challenge
 r.db('fitapp').table('challenges').insert({
   id: 1,
   category: 'steps',
