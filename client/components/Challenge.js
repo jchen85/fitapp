@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
-import { socket } from '../index';
 
-export default class Counter extends Component {
+export default class Challenge extends Component {
   constructor(props, context) {
     super(props, context);
   }
@@ -17,7 +16,10 @@ export default class Counter extends Component {
                         () => actions.removeMember(challenge.id, user.id) :
                         () => actions.addMember(challenge.id, user.id);
 
-    const button = challenge.disabled && memberOrNot ?
+    // After the halfway point, challenge becomes disabled.
+    // User can still join, but they can't leave
+    // Challenge also becomes disabled once the end_time is reached
+    const button = challenge.disabled && memberOrNot || challenge.ended ?
                 <button disabled>Locked</button> :
                 <button onClick={buttonAction}>{buttonText}</button>;
 
@@ -30,7 +32,7 @@ export default class Counter extends Component {
   }
 }
 
-Counter.propTypes = {
+Challenge.propTypes = {
   challenge: PropTypes.object.isRequired,
   actions: PropTypes.object.isRequired,
   user: PropTypes.object.isRequired

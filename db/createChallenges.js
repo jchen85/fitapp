@@ -25,7 +25,8 @@ const createChallenge = (category, requirement, wager, timer) => {
     wager,
     members: [],
     end_time: r.now().add(timer),
-    disabled: false
+    disabled: false,
+    ended: false
   }, { conflict: 'replace' }).run(connection, (err, result) => {
     if (err) throw err;
     key = result.generated_keys[0];
@@ -41,6 +42,15 @@ const createChallenge = (category, requirement, wager, timer) => {
       if (err) throw err;
     });
   }, challengeTimer / 2 * 1000);
+
+  // Do the same for ended when end_time is reached
+  setInterval(() => {
+    r.db('fitapp').table('challenges').get(key)
+    .update({ ended: true })
+    .run(connection, (err) => {
+      if (err) throw err;
+    });
+  }, challengeTimer * 1000);
 };
 
 // Clear out old challenges first, then create new ones
