@@ -42,13 +42,25 @@ export default class Challenge extends Component {
       goalImage = 'http://www.svgcuts.com/fsvgfotw/2010/fsvgfotw_2010_08_04.png';
     }
 
+    // Carrots represent currency/points
     const carrot = <div className="carrot" />;
 
+    // Determine if challenge ended already, render differently if so
+    let challengeClass = null;
+    let challengeStatus = null;
+
+    if (moment(challenge.end_time).isSameOrAfter(moment())) {
+      challengeClass = 'challenge';
+      challengeStatus = 'Challenge ends';
+    } else {
+      challengeClass = 'challenge--ended';
+      challengeStatus = 'Challenge ended';
+    }
 
     return (
-      <div className="challenge">
+      <div className={challengeClass}>
         <header className="challenge__header">
-          <span>Challenge ends {moment(challenge.end_time).fromNow()}</span>
+          <span>{challengeStatus} {moment(challenge.end_time).fromNow()}</span>
         </header>
         <div className="challenge__details">
           <div className="challenge__image">

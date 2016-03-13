@@ -19,6 +19,7 @@ $challenge-join-color: #4cc2c4;
   margin-top: 0;
   background-color: $challenge-header-color;
   border-radius: 0.1em 0.1em 0 0;
+  color: #FAEBD7;
 }
 
 .challenge__details {
@@ -33,8 +34,8 @@ $challenge-join-color: #4cc2c4;
 }
 
 .challenge__image img {
-  width: auto;
-  height: 3em;
+  width: 3em;
+  height: auto;
 }
 
 .challenge__join {
@@ -44,7 +45,7 @@ $challenge-join-color: #4cc2c4;
   padding: 0.5em;
   background-color: $challenge-join-color;
   justify-content: center;
-  border-radius: 0 0 0.1em 0.1em;
+  border-radius: 0 0 0.1em 0;
 }
 
 .challenge__join_btn {
@@ -52,6 +53,7 @@ $challenge-join-color: #4cc2c4;
   padding: 0.2em 0.4em;
   font-size: 0.7em;
   border: none;
+  border: 1px solid black;
 }
 
 .challenge__join_btn--enabled:hover {
@@ -71,7 +73,7 @@ $challenge-join-color: #4cc2c4;
 .challenge__cost {
   display: flex;
   justify-content: center;
-  color: red;
+  color: #f54785;
   font-weight: bold;
 }
 
@@ -85,4 +87,9 @@ $challenge-join-color: #4cc2c4;
   height: 1em;
   border-radius: 50%;
   margin-left: 5px;
+}
+
+.challenge--ended {
+  @extend .challenge;
+  opacity: 0.5;
 }

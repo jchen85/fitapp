@@ -9,10 +9,10 @@ broadcastChanges();
 
 // preset challenges defined here:
 const challengesPreset = [
-  ['steps', 5000, 100, 200, challengeTimer],
-  ['steps', 1000, 100, 200, challengeTimer],
-  ['calories', 1000, 100, 200, challengeTimer],
-  ['calories', 500, 100, 200, challengeTimer],
+  ['steps', 5000, 100, 200, Math.floor(Math.random() * challengeTimer)],
+  ['steps', 1000, 100, 200, Math.floor(Math.random() * challengeTimer)],
+  ['calories', 1000, 100, 200, Math.floor(Math.random() * challengeTimer)],
+  ['calories', 500, 100, 200, Math.floor(Math.random() * challengeTimer)],
 ];
 
 // Create rethinkdb documents for every challenge
@@ -43,7 +43,7 @@ const createChallenge = (category, requirement, wager, reward, timer) => {
     .run(connection, (err) => {
       if (err) throw err;
     });
-  }, challengeTimer / 2 * 1000);
+  }, timer / 2 * 1000);
 
   // Do the same for ended when end_time is reached
   setTimeout(() => {
@@ -54,7 +54,7 @@ const createChallenge = (category, requirement, wager, reward, timer) => {
     });
 
     endChallenge(key);
-  }, challengeTimer * 1000);
+  }, timer * 1000);
 };
 
 // Clear out old challenges first, then create new ones
