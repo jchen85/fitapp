@@ -55,10 +55,9 @@ export default class Challenge extends Component {
             <img src={goalImage} />
           </div>
           <div className="challenge__mainInfo">
-            <div>Goal:</div>
             <h2>{goalDescription}</h2>
             <div className="challenge__reward">
-              Reward: {challenge.reward} {carrot}
+              Reward: <div className="challenge__reward__amt">{challenge.reward}</div> {carrot}
             </div>
             <div className="challenge__participants">
               Participants: {challenge.members.length}
