@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import '../styles/challenge.scss';
 import moment from 'moment';
+import '@gigwalk/livestamp';
 
 export default class Challenge extends Component {
   constructor(props, context) {
@@ -60,7 +61,7 @@ export default class Challenge extends Component {
     return (
       <div className={challengeClass}>
         <header className="challenge__header">
-          <span>{challengeStatus} {moment(challenge.end_time).fromNow()}</span>
+          <span>{challengeStatus} <span data-livestamp={challenge.end_time}></span></span>
         </header>
         <div className="challenge__details">
           <div className="challenge__image">
