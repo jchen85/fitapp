@@ -13,7 +13,7 @@ export default class Challenge extends Component {
     // Render differently depending on if user is a member of this challenge
     const memberOrNot = challenge.members.indexOf(user.id) > -1;
 
-    const buttonText = memberOrNot ? 'Leave' : 'Join';
+    const buttonText = memberOrNot ? 'Leave' : 'Join!';
     const buttonAction = memberOrNot ?
                         () => actions.removeMember(challenge.id, user.id) :
                         () => actions.addMember(challenge.id, user.id);
@@ -22,17 +22,26 @@ export default class Challenge extends Component {
     // User can still join, but they can't leave
     // Challenge also becomes disabled once the end_time is reached
     const button = challenge.disabled && memberOrNot || challenge.ended ?
-                <button disabled>Locked</button> :
-                <button onClick={buttonAction}>{buttonText}</button>;
+                <button className="challenge__join_btn challenge__join_btn--disabled" disabled>Locked</button> :
+                <button className="challenge__join_btn challenge__join_btn--enabled" onClick={buttonAction}>{buttonText}</button>;
 
+    // Change elements depending on type of challenge (calories vs steps)
     let goalDescription = null;
     if (challenge.category === 'calories') {
       goalDescription = `Lose ${challenge.requirement} calories!`;
     }
-
     if (challenge.category === 'steps') {
       goalDescription = `Take ${challenge.requirement} steps!`;
     }
+
+    let goalImage = null;
+    if (challenge.category === 'calories') {
+      goalImage = 'https://cdn3.iconfinder.com/data/icons/frozen-yogurt-fruts/696/iconos_-_ice_cream_-_fruts_Kiwi-512.png';
+    }
+    if (challenge.category === 'steps') {
+      goalImage = 'http://www.svgcuts.com/fsvgfotw/2010/fsvgfotw_2010_08_04.png';
+    }
+
 
     return (
       <div className="challenge">
@@ -41,17 +50,22 @@ export default class Challenge extends Component {
         </header>
         <div className="challenge__details">
           <div className="challenge__image">
-            <img src="http://www.svgcuts.com/fsvgfotw/2010/fsvgfotw_2010_08_04.png" />
+            <img src={goalImage} />
           </div>
           <div className="challenge__mainInfo">
+            <div>Goal:</div>
             <h2>{goalDescription}</h2>
+            <div className="challenge__reward">
+              Reward: {challenge.reward} points
+            </div>
             <div className="challenge__participants">
               Participants: {challenge.members.length}
             </div>
           </div>
-          <div className="challenge__cost_endTime_container">
+          <div className="challenge__join">
             <div className="challenge__cost">
-              Cost: {challenge.wager} points
+              <div>-{challenge.wager}</div>
+              <div>Points</div>
             </div>
             {button}
           </div>

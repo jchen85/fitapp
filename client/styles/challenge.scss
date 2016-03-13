@@ -1,17 +1,33 @@
+$challenge-bg-color: white;
+$challenge-header-color: #206276;
+$challenge-join-color: #4cc2c4;
+
 .challenge {
   font-size: 2em;
-  background-color: white;
+  background-color: $challenge-bg-color;
   border-radius: 1%;
   margin: 0.5em;
+  padding: 0em 0.5em 0.5em 0.5em;
+
+  h2 {
+    margin: 0; 
+  }
 }
 
 .challenge__header {
   display: flex;
   justify-content: center;
+  margin-top: 0;
+  background-color: $challenge-header-color;
 }
 
 .challenge__details {
   display: flex;
+}
+
+.challenge__image {
+  display: flex;
+  align-items: center;  
 }
 
 .challenge__image img {
@@ -19,3 +35,18 @@
   height: 3em;
 }
 
+.challenge__join {
+  margin-left: 1em;
+  padding: 0.5em;
+  background-color: $challenge-join-color;
+}
+
+.challenge__join_btn {
+  padding: 0.5em 1em;
+  font-size: 1em;
+  border: none;
+}
+
+.challenge__join_btn--enabled:hover {
+  background-color: white;
+}
