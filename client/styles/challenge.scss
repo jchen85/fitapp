@@ -36,17 +36,42 @@ $challenge-join-color: #4cc2c4;
 }
 
 .challenge__join {
+  display: flex;
+  flex-direction: column;
   margin-left: 1em;
   padding: 0.5em;
   background-color: $challenge-join-color;
+  justify-content: center;
 }
 
 .challenge__join_btn {
-  padding: 0.5em 1em;
-  font-size: 1em;
+  margin: 0.5em;
+  padding: 0.2em 0.4em;
+  font-size: 0.7em;
   border: none;
 }
 
 .challenge__join_btn--enabled:hover {
   background-color: white;
+}
+
+.challenge__reward {
+  display: flex;
+}
+
+.challenge__cost {
+  display: flex;
+  justify-content: center;
+}
+
+.carrot {
+  background-image: url(https://cdn2.iconfinder.com/data/icons/thesquid-ink-40-free-flat-icon-pack/64/carrot-512.png);
+  background-size: 1em;
+  background-repeat: no-repeat;
+  background-color: white;
+  border: 1px solid black;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  margin-left: 5px;
 }

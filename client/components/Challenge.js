@@ -42,6 +42,8 @@ export default class Challenge extends Component {
       goalImage = 'http://www.svgcuts.com/fsvgfotw/2010/fsvgfotw_2010_08_04.png';
     }
 
+    const carrot = <div className="carrot" />;
+
 
     return (
       <div className="challenge">
@@ -56,16 +58,16 @@ export default class Challenge extends Component {
             <div>Goal:</div>
             <h2>{goalDescription}</h2>
             <div className="challenge__reward">
-              Reward: {challenge.reward} points
+              Reward: {challenge.reward} {carrot}
             </div>
             <div className="challenge__participants">
               Participants: {challenge.members.length}
             </div>
           </div>
           <div className="challenge__join">
+            Interested?
             <div className="challenge__cost">
-              <div>-{challenge.wager}</div>
-              <div>Points</div>
+              -{challenge.wager} {carrot}
             </div>
             {button}
           </div>
