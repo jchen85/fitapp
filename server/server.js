@@ -1,6 +1,8 @@
+
 // Enable ES6 transpile
 require('babel-register');
 
+const path = require('path');
 const express = require('express');
 const webpack = require('webpack');
 const config = require('../webpack.config.dev');
@@ -17,6 +19,8 @@ app.use(require('webpack-dev-middleware')(compiler, {
 }));
 
 app.use(require('webpack-hot-middleware')(compiler));
+
+app.use(express.static(path.join(__dirname, '..')));
 
 module.exports = {
   app: app,

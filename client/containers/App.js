@@ -4,7 +4,9 @@ import { connect } from 'react-redux';
 import * as UserActions from '../actions/UserActions';
 import * as ChallengesActions from '../actions/ChallengesActions';
 import Footer from '../components/Footer';
+import UserInfo from './UserInfo';
 import Challenges from './Challenges';
+import SideMenu from './SideMenu';
 import { socket } from '../index';
 
 export default class App extends Component {
@@ -27,6 +29,8 @@ export default class App extends Component {
     const { challenges, actions, user } = this.props;
     return (
       <div className="main-app-container">
+        <SideMenu />
+        <UserInfo actions={actions} user={user} />
         <div className="main-app-nav">Simple Redux Boilerplate</div>
         <h2>Challenges</h2>
         <Challenges actions={actions} challenges={challenges} user={user} />

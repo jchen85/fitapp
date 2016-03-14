@@ -6,18 +6,22 @@ import moment from 'moment';
 
 const addUser = (user) => {
   return request({
-    url: `https://api.fitbit.com/1/user/${user.profile.id}/activities/date/${moment().format('YYYY-MM-DD')}.json`, // get today's activity summary from Fitbit API
+    url: `https://api.fitbit.com/1/user/${user.profile.id}/profile.json`, // get today's activity summary from Fitbit API
     headers: {
       'User-Agent': 'request',
-      Authorization: `Bearer ${user.accessToken}`
+      Authorization: `Bearer ${user.accessToken}`,
+      mode: 'no-cors'
     }
   })
-  .then((result) => {
+  .then((profile) => {
+    profile = JSON.parse(profile);
     return r.db('fitapp').table('users').insert({
       id: user.profile.id,
       name: user.profile.displayName,
       points: startingPoints,
-      accessToken: user.accessToken
+      accessToken: user.accessToken,
+      avatar: profile.user.avatar,
+      age: profile.user.age
     }, { conflict: 'replace' }
     ).run(connection);
   })
