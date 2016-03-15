@@ -9,6 +9,7 @@ class Leaderboard extends Component {
   componentDidMount() {
     const { actions } = this.props;
     actions.fetchLeaderboard('All');
+    actions.fetchTeamScores();
   }
 
   render() {
@@ -46,7 +47,8 @@ Leaderboard.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    leaderboard: state.leaderboard
+    leaderboard: state.leaderboard.leaderboard,
+    teamScores: state.leaderboard.teamScores
   };
 }
 
