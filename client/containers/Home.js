@@ -31,8 +31,8 @@ class Home extends Component {
       <div className="main__app__container">
         <UserInfo actions={actions} user={user} />
         <div className="main__body__container">
-          {this.props.children}
           <SideBar user={user} />
+          {this.props.children}
         </div>
       </div>
     );

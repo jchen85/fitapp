@@ -7,7 +7,7 @@ import { connection } from './connection';
 const removeMemberFromChallenge = (challengeId, userId) => {
   return r.db('fitapp').table('challenges')
     .get(challengeId)
-    .update({ members: r.row('members').filter(item => { return item.ne(userId); }) })
+    .update({ members: r.row('members').filter(item => { return item('id').ne(userId); }) })
     .run(connection);
 };
 

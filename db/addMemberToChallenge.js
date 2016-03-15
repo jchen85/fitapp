@@ -4,10 +4,15 @@ import request from 'request-promise';
 import moment from 'moment';
 
 const addMemberToChallenge = (challengeId, userId) => {
+  const userObj = {};
+
   return r.db('fitapp').table('users')
     .get(userId)
     .run(connection)
     .then(row => {
+      userObj.name = row.name;
+      userObj.avatar = row.avatar;
+
       return request({
         url: `https://api.fitbit.com/1/user/${row.id}/activities/date/${moment().format('YYYY-MM-DD')}.json`, // get today's activity summary from Fitbit API
         headers: {
@@ -33,7 +38,9 @@ const addMemberToChallenge = (challengeId, userId) => {
       return r.db('fitapp').table('challenges')
       .get(challengeId)
       // use setInsert to ensure members don't get inserted twice
-      .update({ members: r.row('members').setInsert(userId) })
+      .update({ members: r.row('members').setInsert({
+        id: userId, avatar: userObj.avatar, name: userObj.name
+      }) })
       .run(connection);
     })
     .catch(err => {

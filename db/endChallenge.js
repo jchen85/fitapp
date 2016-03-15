@@ -8,17 +8,7 @@ import { challengeCost } from '../constants/gameSettings';
 // Then for each member in each challenge, retrieve their stats at the end
 // Check to see if they met their goal
 export const endChallenge = (challengeId) => {
-  r.db('fitapp').table('challenges').merge(challenge => {
-    return r.branch(
-      challenge('members').isEmpty(),
-      {},
-      {
-        members: r.db('fitapp').table('users')
-        .getAll(r.args(challenge('members')), { index: 'id' }).coerceTo('ARRAY')
-      }
-    );
-  })
-  .filter({ id: challengeId })
+  r.db('fitapp').table('challenges')
   .run(connection)
   .then(cursors => {
     cursors.each((err, challenge) => {

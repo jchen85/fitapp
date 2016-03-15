@@ -12,7 +12,9 @@ export default class Challenge extends Component {
     const { challenge, actions, user } = this.props;
 
     // Render differently depending on if user is a member of this challenge
-    const memberOrNot = challenge.members.indexOf(user.id) > -1;
+    const memberOrNot = challenge.members.reduce((acc, el) => {
+      if (el.id === user.id) return true;
+    }, false);
 
     const buttonText = memberOrNot ? 'Leave' : 'Join!';
     const buttonAction = memberOrNot ?
