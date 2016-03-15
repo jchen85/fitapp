@@ -2,14 +2,10 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { socket } from '../index';
-import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 
 import * as UserActions from '../actions/UserActions';
 import * as ChallengesActions from '../actions/ChallengesActions';
-import Footer from '../components/Footer';
 import UserInfo from './UserInfo';
-import Challenges from './Challenges';
-import Store from './Store';
 import SideBar from './SideBar';
 
 class Home extends Component {
@@ -38,7 +34,6 @@ class Home extends Component {
           {this.props.children}
           <SideBar user={user} />
         </div>
-        <Footer />
       </div>
     );
   }
