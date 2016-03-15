@@ -12,6 +12,11 @@ r.connect(config, (err, conn) => {
     if (err) console.log('users table exists already so nothing happened');
   });
 
+  r.db('fitapp').tableCreate('fakeUsers').run(connection, (err, result) => {
+    if (err) console.log('users table exists already so nothing happened');
+    require('../runner/createFakeUsers');
+  });
+
   r.db('fitapp').tableCreate('challenges').run(connection, (err, result) => {
     if (err) console.log('challenges table exists already so nothing happened');
     require('./createChallenges');

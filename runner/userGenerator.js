@@ -4,8 +4,8 @@ var random_name = require('node-random-name');
 
 // bing image search type:photograph people:just faces search:guy
 
-var femalePath = path.join(__dirname, 'user_pictures', 'female');
-var malePath = path.join(__dirname, 'user_pictures', 'male');
+var femalePath = path.join(__dirname, '..', 'static', 'user_pictures', 'female');
+var malePath = path.join(__dirname, '..', 'static', 'user_pictures', 'male');
 var femaleImages = fs.readdirSync(femalePath);
 var maleImages = fs.readdirSync(malePath);
 
@@ -32,7 +32,7 @@ export default function generateUser() {
 
 
   var profilePic = function(gender) {
-    var base = "/img/profilePics/";
+    var base = "/static/user_pictures/";
     var filename = "";
     if (gender === 'male') {
       filename = maleImages[Math.floor(Math.random()*maleImages.length)];
@@ -65,15 +65,12 @@ export default function generateUser() {
   var gender = gender();
 
   var fakeUser = {
-    facebook_id: 12345,
-    first_name: random_name({ first: true, gender: gender, seed: String(Math.random() * Date.now()) }),
-    last_name: random_name({ last: true, seed: String(Math.random() * Date.now()) }),
-    gender: gender,
-    birthday: birthday, // TODO
-    birthdayStr: birthdayStr, // Use birthdayStr if you want to insert into the DB
-    status: true, // this can just be a boolean, whether they can be matched
-    image_url: profilePic(gender)
-  }
+    name: random_name({ first: true, gender: gender, seed: String(Math.random() * Date.now()) }),
+    age: calculateAge(birthday),
+    fake: true,
+    avatar: profilePic(gender),
+    points: Math.ceil((500 + Math.random() * 1000) / 100) * 100 // generate number between 500 and 1500 and round up to nearest 100
+  };
 
   return fakeUser;
 

@@ -65,11 +65,11 @@ r.db('fitapp').table('challenges').delete().run(connection)
   });
 });
 
-// setInterval(() => {
-//   r.db('fitapp').table('challenges').delete().run(connection)
-//   .then(() => {
-//     challengesPreset.forEach(challenge => {
-//       createChallenge(...challenge);
-//     });
-//   });
-// }, challengeTimer * 1000 * 1.2);
+setInterval(() => {
+  r.db('fitapp').table('challenges').delete().run(connection)
+  .then(() => {
+    challengesPreset.forEach(challenge => {
+      createChallenge(...challenge);
+    });
+  });
+}, challengeTimer * 1000 * 1.2);
