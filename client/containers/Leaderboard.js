@@ -2,25 +2,46 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as LeaderboardActions from '../actions/LeaderboardActions';
-import { socket } from '../index';
+import LeaderboardEntry from '../components/LeaderboardEntry';
+import '../styles/leaderboard.scss';
 
 class Leaderboard extends Component {
   componentDidMount() {
-    socket.on('newLeaderboard', data => {
-      console.log(data);
-    });
+    const { actions } = this.props;
+    actions.fetchLeaderboard('All');
   }
 
   render() {
+    const { leaderboard } = this.props;
+
+    const leaderboardEntries = leaderboard.map((entry, i) => {
+      return <LeaderboardEntry leaderboardEntry={entry} key={i} />;
+    });
+
     return (
       <div className="leaderboard">
+        <table>
+          <thead>
+          <tr>
+            <th></th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Team</th>
+            <th>Carrots</th>
+          </tr>
+          </thead>
+          <tbody>
+          {leaderboardEntries}
+          </tbody>
+        </table>
       </div>
     );
   }
 }
 
 Leaderboard.propTypes = {
-  leaderboard: PropTypes.array.isRequired
+  leaderboard: PropTypes.array.isRequired,
+  actions: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state) {

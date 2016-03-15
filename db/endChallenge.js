@@ -13,48 +13,52 @@ export const endChallenge = (challengeId) => {
   .then(cursors => {
     cursors.each((err, challenge) => {
       challenge.members.forEach(member => {
-        request({
-          url: `https://api.fitbit.com/1/user/${member.id}/activities/date/${moment().format('YYYY-MM-DD')}.json`, // get today's activity summary from Fitbit API
-          headers: {
-            'User-Agent': 'request',
-            Authorization: `Bearer ${member.accessToken}`
+        // Fake users have a 50% chance of completing the challenge and having their score change. Doesn't reflect the same math as would happen for a real user
+        if (member.fake) {
+          if (Math.floor(Math.random() * 2)) {
+            r.db('fitapp').table('fakeUsers').get(member.id)
+            .update(row => {
+              return {
+                points: row('points').add(challengeCost)
+              };
+            });
+          } else {
+            r.db('fitapp').table('fakeUsers').get(member.id)
+            .update(row => {
+              return {
+                points: row('points') - challengeCost
+              };
+            });
           }
-        })
-        .then((endingStats) => {
-          r.db('fitapp').table('joinStats').get(member.id)
-          .run(connection)
-          .then(memberJoinStats => {
-            endingStats = JSON.parse(endingStats).summary.steps;
-            memberJoinStats = memberJoinStats[challengeId].stepsTaken;
-
-            // Fake users have a 50% chance of completing the challenge and having their score change. Doesn't reflect the same math as would happen for a real user
-            if (member.fake) {
-              if (Math.floor(Math.random() * 2)) {
-                r.db('fitapp').table('fakeUsers').get(member.id)
+        } else {
+          request({
+            url: `https://api.fitbit.com/1/user/${member.id}/activities/date/${moment().format('YYYY-MM-DD')}.json`, // get today's activity summary from Fitbit API
+            headers: {
+              'User-Agent': 'request',
+              Authorization: `Bearer ${member.accessToken}`
+            }
+          })
+          .then((endingStats) => {
+            r.db('fitapp').table('joinStats').get(member.id)
+            .run(connection)
+            .then(memberJoinStats => {
+              endingStats = JSON.parse(endingStats).summary.steps;
+              memberJoinStats = memberJoinStats[challengeId].stepsTaken;
+              if (endingStats - memberJoinStats >= challenge.requirement) {
+                r.db('fitapp').table('users').get(member.id)
                 .update(row => {
                   return {
                     points: row('points').add(challengeCost)
                   };
-                });
-              } else {
-                r.db('fitapp').table('fakeUsers').get(member.id)
-                .update(row => {
-                  return {
-                    points: row('points') - challengeCost
-                  };
-                });
+                })
+                .run(connection);
               }
-            } else if (endingStats - memberJoinStats >= challenge.requirement) {
-              r.db('fitapp').table('users').get(member.id)
-              .update(row => {
-                return {
-                  points: row('points').add(challengeCost)
-                };
-              })
-              .run(connection);
-            }
+            });
+          })
+          .catch(err => {
+            if (err) throw err;
           });
-        });
+        }
       });
     });
   });
