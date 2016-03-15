@@ -3,9 +3,9 @@ import '../styles/leaderboard.scss';
 
 export default class TeamScoreEntry extends Component {
   render() {
-    const { teamScoreEntry } = this.props;
+    const { teamScoreEntry, fetchLeaderboard } = this.props;
     return (
-      <tr className="teamScore__entry">
+      <tr className="teamScore__entry" onClick={() => fetchLeaderboard(teamScoreEntry.group)}>
         <td>{teamScoreEntry.group}</td>
         <td>{teamScoreEntry.reduction}</td>
       </tr>
@@ -14,5 +14,6 @@ export default class TeamScoreEntry extends Component {
 }
 
 TeamScoreEntry.propTypes = {
-  teamScoreEntry: PropTypes.object.isRequired
+  teamScoreEntry: PropTypes.object.isRequired,
+  fetchLeaderboard: PropTypes.function.isRequired
 };

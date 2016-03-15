@@ -14,14 +14,14 @@ class Leaderboard extends Component {
   }
 
   render() {
-    const { leaderboard, teamScores } = this.props;
+    const { leaderboard, teamScores, actions } = this.props;
 
     const leaderboardEntries = leaderboard.map((entry, i) => {
       return <LeaderboardEntry leaderboardEntry={entry} key={i} />;
     });
 
     const teamScoreEntries = teamScores.map((entry, i) => {
-      return <TeamScoreEntry teamScoreEntry={entry} key={i} />;
+      return <TeamScoreEntry teamScoreEntry={entry} key={i} fetchLeaderboard={actions.fetchLeaderboard} />;
     });
 
     return (
