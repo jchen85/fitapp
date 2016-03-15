@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react';
+import { Link } from 'react-router';
 import '../styles/sidebar.scss';
+import { browserHistory } from 'react-router'
 
 export default class SideBar extends Component {
   render() {
@@ -11,6 +13,10 @@ export default class SideBar extends Component {
           <img src={user.avatar} />
         </div>
         {user.name}, {user.age}
+        <ul role="nav">
+          <li><Link to="/challenges">Challenges</Link></li>
+          <li><Link to="/store">Store</Link></li>
+        </ul>
       </div>
     );
   }
