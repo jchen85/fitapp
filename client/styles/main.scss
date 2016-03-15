@@ -21,7 +21,8 @@ body {
 }
 
 .main__body__container {
-  display: flex; 
+  display: flex;
+  justify-content: space-around;
 }
 
 .main-app-nav {

@@ -12,7 +12,7 @@ export default class UserInfo extends Component {
     return (
       <div className="user">
         <div className="user__statement__container">
-          Hi, {user.name}. Today is &nbsp;{moment().format('dddd, MMMM Do YYYY')}. You have until midnight to complete challenges for today!
+          Hi, {user.name}. Today is&nbsp;{moment().format('dddd, MMMM Do YYYY')}. You have until midnight to complete challenges for today!
           <div className="user__achievements__container">
             Progress to next achievement:
           </div>

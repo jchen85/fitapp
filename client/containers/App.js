@@ -6,7 +6,7 @@ import * as ChallengesActions from '../actions/ChallengesActions';
 import Footer from '../components/Footer';
 import UserInfo from './UserInfo';
 import Challenges from './Challenges';
-import SideMenu from './SideMenu';
+import SideBar from './SideBar';
 import { socket } from '../index';
 
 export default class App extends Component {
@@ -31,7 +31,7 @@ export default class App extends Component {
       <div className="main__app__container">
         <UserInfo actions={actions} user={user} />
         <div className="main__body__container">
-          <div className="navigation">SideMenu</div>
+          <SideBar user={user} />
           <div className="challenges__container">
             <h2>Challenges</h2>
             <Challenges actions={actions} challenges={challenges} user={user} />
