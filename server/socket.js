@@ -64,6 +64,17 @@ io.on('connection', (socket) => {
       });
     });
   });
+
+  // subscribe user to changefeed of leaderboard
+  // r.db('fitapp').table('fakeUsers').orderBy({ index: r.desc('points') })
+  // .limit(100).changes({ includeInitial: true }).run(connection)
+  // .then(cursor => {
+  //   console.log('laederboard changed');
+  //   cursor.eachAsync(row => {
+  //     console.log(row);
+  //     socket.emit('newLeaderboard', row.new_val);
+  //   });
+  // });
 });
 
 // Subscribe to the changefeed for challenges: https://www.rethinkdb.com/docs/changefeeds/javascript/

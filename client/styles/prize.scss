@@ -1,0 +1,53 @@
+$prize-bg-color: #2D7475;
+$challenge-header-color: #206276;
+$challenge-join-color: #4cc2c4;
+
+.prize {
+  background-color: $prize-bg-color;
+  margin: 0.3em;
+}
+
+.prize img {
+  height: 5em;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.prize__card {
+  background-color: white;
+  padding: 0em 0em 1em 0em;
+  margin: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 1px 20px 3px #f54785;
+  -webkit-animation-name: greenPulse;
+  -webkit-animation-duration: 2s;
+  -webkit-animation-iteration-count: infinite;
+}
+
+@-webkit-keyframes greenPulse {
+  from { -webkit-box-shadow: 0 0 9px 3px #333; }
+  50% { -webkit-box-shadow: 0 0 18px 3px #f54785; }
+  to { -webkit-box-shadow: 0 0 9px 3px #333; }
+}
+
+.prize__card__header {
+  top: 0;
+  background-color: #752E2D;
+  width: 100%;
+}
+
+.prize__card__header p {
+  text-align: right;
+  margin: 0;
+  color: #FAEBD7;
+}
+
+
+.prize__descr {
+  width: 10em;
+  margin-left: 3em;
+  margin-right: 3em;
+}
+

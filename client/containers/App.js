@@ -4,6 +4,7 @@ import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 import Challenges from './Challenges';
 import Store from './Store';
 import Home from './Home';
+import Leaderboard from './Leaderboard';
 
 export default class App extends Component {
   render() {
@@ -13,6 +14,7 @@ export default class App extends Component {
           <IndexRoute component={Challenges}/>
           <Route path="challenges" component={Challenges} />
           <Route path="store" component={Store} />
+          <Route path="leaderboard" component={Leaderboard} />
         </Route>
       </Router>
     );
