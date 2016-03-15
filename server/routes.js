@@ -1,6 +1,7 @@
 import path from 'path';
 import { app } from './server';
 import { getUser } from '../db/getUser';
+import { getLeaderboard } from '../db/getLeaderboard';
 
 const loggedIn = (req, res, next) => {
   if (req.user) {
@@ -30,6 +31,16 @@ app.get('/users/profile', loggedIn, (req, res) => {
     res.json(result);
   })
   .catch((err) => {
+    if (err) throw err;
+  });
+});
+
+app.get('/users/top/:team', (req, res) => {
+  getLeaderboard(req.params.team)
+  .then(result => {
+    res.json(result);
+  })
+  .catch(err => {
     if (err) throw err;
   });
 });

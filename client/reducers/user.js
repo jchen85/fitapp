@@ -16,7 +16,8 @@ export default function user(state = initialState, action) {
         name: action.userInfo.name,
         points: action.userInfo.points,
         avatar: action.userInfo.avatar,
-        age: action.userInfo.age
+        age: action.userInfo.age,
+        team: action.userInfo.team
       });
     default:
       return state;

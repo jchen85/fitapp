@@ -14,7 +14,10 @@ export default class Prize extends Component {
         Today's prize:
         <div className="prize__card">
           <div className="prize__card__header">
-            <p>Activation Cost: -100</p>
+            <div className="prize__card__header__cost">
+              <p>Activation Cost: -100</p> 
+              <div className="carrot"></div>
+            </div>
             <p>Duration: 4 hours</p>
           </div>
           <img src={image} />

@@ -3,6 +3,7 @@ import { connection } from './connection';
 import request from 'request-promise';
 import { startingPoints } from '../constants/gameSettings';
 import moment from 'moment';
+import { teams } from '../constants/gameSettings';
 
 const addUser = (user) => {
   return request({
@@ -21,7 +22,8 @@ const addUser = (user) => {
       points: startingPoints,
       accessToken: user.accessToken,
       avatar: profile.user.avatar,
-      age: profile.user.age
+      age: profile.user.age,
+      team: teams[Math.floor(Math.random() * 5)]
     }, { conflict: 'replace' }
     ).run(connection);
   })

@@ -2,6 +2,7 @@ import r from 'rethinkdb';
 import { connection } from './connection';
 import request from 'request-promise';
 import moment from 'moment';
+import { teams } from '../constants/gameSettings';
 
 const addMemberToChallenge = (challengeId, userId) => {
   const userObj = {};
@@ -12,6 +13,7 @@ const addMemberToChallenge = (challengeId, userId) => {
     .then(row => {
       userObj.name = row.name;
       userObj.avatar = row.avatar;
+      userObj.team = row.team;
 
       return request({
         url: `https://api.fitbit.com/1/user/${row.id}/activities/date/${moment().format('YYYY-MM-DD')}.json`, // get today's activity summary from Fitbit API
@@ -39,7 +41,7 @@ const addMemberToChallenge = (challengeId, userId) => {
       .get(challengeId)
       // use setInsert to ensure members don't get inserted twice
       .update({ members: r.row('members').setInsert({
-        id: userId, avatar: userObj.avatar, name: userObj.name
+        id: userId, avatar: userObj.avatar, name: userObj.name, team: userObj.team
       }) })
       .run(connection);
     })

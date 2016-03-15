@@ -4,7 +4,7 @@ import { connection } from '../db/connection';
 
 const addFakeUserToDb = () => {
   const fakeUser = userGenerator();
-  r.db('fitapp').table('fakeUsers').insert(fakeUser)
+  r.db('fitapp').table('users').insert(fakeUser)
   .run(connection)
   .catch(err => {
     if (err) throw err;
@@ -12,7 +12,7 @@ const addFakeUserToDb = () => {
 };
 
 const addFakeUserToChallenge = () => {
-  r.db('fitapp').table('fakeUsers').sample(1)
+  r.db('fitapp').table('users').filter({fake:true}).sample(1)
   .run(connection)
   .then((fakeUser) => {
     r.db('fitapp').table('challenges').sample(1).update({

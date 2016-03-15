@@ -1,6 +1,7 @@
 var fs = require('fs');
 var path = require('path');
 var random_name = require('node-random-name');
+var teams = require('../constants/gameSettings').teams;
 
 // bing image search type:photograph people:just faces search:guy
 
@@ -69,7 +70,8 @@ export default function generateUser() {
     age: calculateAge(birthday),
     fake: true,
     avatar: profilePic(gender),
-    points: Math.ceil((500 + Math.random() * 1000) / 100) * 100 // generate number between 500 and 1500 and round up to nearest 100
+    points: Math.ceil((500 + Math.random() * 1000) / 100) * 100, // generate number between 500 and 1500 and round up to nearest 100
+    team: teams[Math.floor(Math.random() * 5)]
   };
 
   return fakeUser;
