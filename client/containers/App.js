@@ -28,12 +28,15 @@ export default class App extends Component {
   render() {
     const { challenges, actions, user } = this.props;
     return (
-      <div className="main-app-container">
-        <SideMenu />
+      <div className="main__app__container">
         <UserInfo actions={actions} user={user} />
-        <div className="main-app-nav">Simple Redux Boilerplate</div>
-        <h2>Challenges</h2>
-        <Challenges actions={actions} challenges={challenges} user={user} />
+        <div className="main__body__container">
+          <div className="navigation">SideMenu</div>
+          <div className="challenges__container">
+            <h2>Challenges</h2>
+            <Challenges actions={actions} challenges={challenges} user={user} />
+          </div>
+        </div>
         <Footer />
       </div>
     );

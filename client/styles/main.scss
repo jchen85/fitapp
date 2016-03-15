@@ -16,8 +16,12 @@ body {
   font-family: 'Raleway', sans-serif;
 }
 
-.main-app-container {
+.main__app__container {
   padding-top: 2em;
+}
+
+.main__body__container {
+  display: flex; 
 }
 
 .main-app-nav {
