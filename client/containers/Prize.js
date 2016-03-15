@@ -1,30 +1,57 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import '../styles/prize.scss';
-
-import Speedwalk from '../components/prizes/Speedwalk';
+import * as LeaderboardActions from '../actions/LeaderboardActions';
+import Card from '../components/Card';
+import CardTypes from '../constants/CardTypes';
 
 export default class Prize extends Component {
+  componentDidMount() {
+    const { actions } = this.props;
+    actions.fetchTeamScores();
+  }
+
   render() {
-    const image = "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Lightning_Bolt_on_Circle.svg/2000px-Lightning_Bolt_on_Circle.svg.png";
-    
+    const { teamScores } = this.props;
+
     return (
       <div className="prize">
         <div className="prize__header">
         </div>
         Today's prize:
-        <div className="prize__card">
-          <div className="prize__card__header">
-            <div className="prize__card__header__cost">
-              <p>Activation Cost: -100</p> 
-              <div className="carrot"></div>
-            </div>
-            <p>Duration: 4 hours</p>
+        <Card type={CardTypes.Speedwalk} />
+        <div className="prize__leader">
+          <div className="prize__leader__header">Today's Leader</div>
+            <h3>{teamScores[0].group}</h3>
+          <div className="prize__leader__desc">
+            If {teamScores[0].group} has the highest score at midnight, all Delta team members will receive Speedwalk in their inventory.
           </div>
-          <img src={image} />
-          <h3>Speedwalk</h3>
-          <p className="prize__descr">When Speedwalk is active, Step challenges can be completed with 75% the number of steps.</p>
         </div>
       </div>
     );
   }
 }
+
+Prize.propTypes = {
+  teamScores: PropTypes.array.isRequired,
+  actions: PropTypes.object.isRequired
+};
+
+function mapStateToProps(state) {
+  return {
+    teamScores: state.leaderboard.teamScores
+  };
+}
+
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(LeaderboardActions, dispatch),
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Prize);

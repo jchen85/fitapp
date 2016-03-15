@@ -36,13 +36,25 @@ export default class Challenge extends Component {
     if (challenge.category === 'steps') {
       goalDescription = `Take ${challenge.requirement} steps!`;
     }
+    if (challenge.category === 'activity') {
+      goalDescription = `Be active for ${challenge.requirement} mins!`;
+    }
+    if (challenge.category === 'distance') {
+      goalDescription = `Move ${challenge.requirement} miles!`;
+    }
 
     let goalImage = null;
     if (challenge.category === 'calories') {
-      goalImage = 'https://cdn3.iconfinder.com/data/icons/frozen-yogurt-fruts/696/iconos_-_ice_cream_-_fruts_Kiwi-512.png';
+      goalImage = '/static/icons/kiwi.png';
     }
     if (challenge.category === 'steps') {
-      goalImage = 'http://www.svgcuts.com/fsvgfotw/2010/fsvgfotw_2010_08_04.png';
+      goalImage = '/static/icons/shoe.png';
+    }
+    if (challenge.category === 'activity') {
+      goalImage = '/static/icons/heartrate.png';
+    }
+    if (challenge.category === 'distance') {
+      goalImage = '/static/icons/map.png';
     }
 
     // Carrots represent currency/points

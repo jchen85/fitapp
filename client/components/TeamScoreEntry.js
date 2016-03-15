@@ -15,5 +15,4 @@ export default class TeamScoreEntry extends Component {
 
 TeamScoreEntry.propTypes = {
   teamScoreEntry: PropTypes.object.isRequired,
-  fetchLeaderboard: PropTypes.function.isRequired
 };

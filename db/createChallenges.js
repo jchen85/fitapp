@@ -3,16 +3,19 @@ import { connection } from './connection';
 import { broadcastChanges } from '../server/socket';
 import { challengeTimer } from '../constants/gameSettings';
 import { endChallenge } from './endChallenge';
+import { shuffle } from 'underscore';
 
 // Attach listener to challenges table and broadcast changes to all socket-connected clients
 broadcastChanges();
 
 // preset challenges defined here:
 const challengesPreset = [
-  ['steps', 5000, 100, 200, Math.floor(Math.random() * challengeTimer)],
+  ['steps', 5000, 100, 400, Math.floor(Math.random() * challengeTimer)],
   ['steps', 1000, 100, 200, Math.floor(Math.random() * challengeTimer)],
-  ['calories', 1000, 100, 200, Math.floor(Math.random() * challengeTimer)],
+  ['calories', 1000, 100, 400, Math.floor(Math.random() * challengeTimer)],
   ['calories', 500, 100, 200, Math.floor(Math.random() * challengeTimer)],
+  ['activity', 30, 100, 200, Math.floor(Math.random() * challengeTimer) + 1800],
+  ['distance', 1, 100, 200, Math.floor(Math.random() * challengeTimer)]
 ];
 
 // Create rethinkdb documents for every challenge
@@ -60,7 +63,7 @@ const createChallenge = (category, requirement, wager, reward, timer) => {
 // Clear out old challenges first, then create new ones
 r.db('fitapp').table('challenges').delete().run(connection)
 .then(() => {
-  challengesPreset.forEach(challenge => {
+  shuffle(challengesPreset).forEach(challenge => {
     createChallenge(...challenge);
   });
 });
@@ -68,7 +71,7 @@ r.db('fitapp').table('challenges').delete().run(connection)
 setInterval(() => {
   r.db('fitapp').table('challenges').delete().run(connection)
   .then(() => {
-    challengesPreset.forEach(challenge => {
+    shuffle(challengesPreset).forEach(challenge => {
       createChallenge(...challenge);
     });
   });

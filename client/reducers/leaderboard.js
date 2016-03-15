@@ -1,6 +1,6 @@
 import { SET_TEAM_SCORES, SET_LEADERBOARD } from '../constants/ActionTypes';
 
-const initialState = { leaderboard: [], teamScores: [] };
+const initialState = { leaderboard: [], teamScores: [{ group: 'Loading', reduction: 0 }] };
 
 export default function leaderboard(state = initialState, action) {
   switch (action.type) {
