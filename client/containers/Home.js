@@ -7,6 +7,7 @@ import * as UserActions from '../actions/UserActions';
 import * as ChallengesActions from '../actions/ChallengesActions';
 import UserInfo from './UserInfo';
 import SideBar from './SideBar';
+import Prize from './Prize';
 
 class Home extends Component {
   componentDidMount() {
@@ -33,6 +34,7 @@ class Home extends Component {
         <div className="main__body__container">
           <SideBar user={user} />
           {this.props.children}
+          <Prize />
         </div>
       </div>
     );

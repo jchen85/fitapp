@@ -27,7 +27,24 @@ export const endChallenge = (challengeId) => {
             endingStats = JSON.parse(endingStats).summary.steps;
             memberJoinStats = memberJoinStats[challengeId].stepsTaken;
 
-            if (endingStats - memberJoinStats >= challenge.requirement) {
+            // Fake users have a 50% chance of completing the challenge and having their score change. Doesn't reflect the same math as would happen for a real user
+            if (member.fake) {
+              if (Math.floor(Math.random() * 2)) {
+                r.db('fitapp').table('fakeUsers').get(member.id)
+                .update(row => {
+                  return {
+                    points: row('points').add(challengeCost)
+                  };
+                });
+              } else {
+                r.db('fitapp').table('fakeUsers').get(member.id)
+                .update(row => {
+                  return {
+                    points: row('points') - challengeCost
+                  };
+                });
+              }
+            } else if (endingStats - memberJoinStats >= challenge.requirement) {
               r.db('fitapp').table('users').get(member.id)
               .update(row => {
                 return {
