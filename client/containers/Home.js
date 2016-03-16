@@ -10,12 +10,6 @@ import SideBar from './SideBar';
 import Prize from './Prize';
 
 class Home extends Component {
-  
-  constructor(props, context) {
-    super(props);
-    context.router // will work
-  }
-
   componentDidMount() {
     const { actions } = this.props;
 

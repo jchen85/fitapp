@@ -20,7 +20,7 @@ class Challenges extends Component {
     });
 
     return (
-      <div>
+      <div className="challenges__container">
         {challengesDivs}
       </div>
     );

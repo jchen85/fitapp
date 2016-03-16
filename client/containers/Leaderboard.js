@@ -17,40 +17,74 @@ class Leaderboard extends Component {
     const { leaderboard, teamScores, actions } = this.props;
 
     const leaderboardEntries = leaderboard.map((entry, i) => {
-      return <LeaderboardEntry leaderboardEntry={entry} key={i} />;
+      if (i <= 49) {
+        return <LeaderboardEntry leaderboardEntry={entry} key={i} rank={i + 1}/>;
+      }
+    });
+
+    const leaderboardEntries2 = leaderboard.map((entry, i) => {
+      if (i > 49) {
+        return <LeaderboardEntry leaderboardEntry={entry} key={i} rank={i + 1}/>;
+      }
     });
 
     const teamScoreEntries = teamScores.map((entry, i) => {
-      return <TeamScoreEntry teamScoreEntry={entry} key={i} fetchLeaderboard={actions.fetchLeaderboard} />;
+      return (<TeamScoreEntry
+        teamScoreEntry={entry}
+        key={i}
+        rank={i + 1}
+        fetchLeaderboard={actions.fetchLeaderboard}
+      />);
     });
 
     return (
       <div className="leaderboards">
+        <h2>Team Leaders</h2>
         <table className="teamLeaderboard">
           <thead>
             <tr>
-              <th>Team</th>
-              <th>Score</th>
+              <th></th>
+              <th>Name</th>
+              <th>Carrots</th>
             </tr>
           </thead>
           <tbody>
           {teamScoreEntries}
           </tbody>
         </table>
-        <table className="userLeaderboard">
-          <thead>
-          <tr>
-            <th></th>
-            <th>Name</th>
-            <th>Age</th>
-            <th>Team</th>
-            <th>Carrots</th>
-          </tr>
-          </thead>
-          <tbody>
-          {leaderboardEntries}
-          </tbody>
-        </table>
+        <h2>User Leaders</h2>
+        <div className="userLeaderboards">
+          <table className="userLeaderboard">
+            <thead>
+            <tr>
+              <th></th>
+              <th></th>
+              <th>Name</th>
+              <th>Age</th>
+              <th>Team</th>
+              <th>Carrots</th>
+            </tr>
+            </thead>
+            <tbody className="userLeaderboard__body">
+            {leaderboardEntries}
+            </tbody>
+          </table>
+          <table className="userLeaderboard">
+            <thead>
+            <tr>
+              <th></th>
+              <th></th>
+              <th>Name</th>
+              <th>Age</th>
+              <th>Team</th>
+              <th>Carrots</th>
+            </tr>
+            </thead>
+            <tbody className="userLeaderboard__body">
+            {leaderboardEntries2}
+            </tbody>
+          </table>
+        </div>
       </div>
     );
   }

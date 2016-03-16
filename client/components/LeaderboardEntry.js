@@ -3,9 +3,10 @@ import '../styles/leaderboard.scss';
 
 export default class LeaderboardEntry extends Component {
   render() {
-    const { leaderboardEntry } = this.props;
+    const { leaderboardEntry, rank } = this.props;
     return (
       <tr className="leaderboard__entry">
+        <td>{rank}</td>
         <td><img src={leaderboardEntry.avatar}/></td>
         <td>{leaderboardEntry.name}</td>
         <td>{leaderboardEntry.age}</td>
@@ -17,5 +18,6 @@ export default class LeaderboardEntry extends Component {
 }
 
 LeaderboardEntry.propTypes = {
-  leaderboardEntry: PropTypes.object.isRequired
+  leaderboardEntry: PropTypes.object.isRequired,
+  rank: PropTypes.number.isRequired
 };

@@ -1,7 +1,52 @@
+.leaderboards {
+  margin-top: 1em;
+  background-color: #2D7475;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  color: #FAEBD7;
+}
+
+td {
+  color: #35342f;
+}
+
+.leaderboards h2 {
+  margin-bottom: 0.1em;
+}
+
+.teamLeaderboard {
+  margin: 1em;
+  margin-top: 0;
+}
+
+.teamScore__entry {
+  background-color: white;
+}
+
+.teamScore__entry td {
+  padding-right: 1em;
+}
+
+.userLeaderboard {
+  margin: 1em;
+}
+
+.userLeaderboards {
+  display: flex;
+  margin-top: 0;
+}
+
+.userLeaderboard__body {
+
+}
+
 .leaderboard__entry img {
   width: 2em;
 }
 
-.userLeaderboard {
-  display: table-header-group;
+.leaderboard__entry {
+  background-color: white;
+  border: 1px solid black;
 }

@@ -2,11 +2,14 @@ $challenge-bg-color: white;
 $challenge-header-color: #206276;
 $challenge-join-color: #4cc2c4;
 
+.challenges__container {
+  margin-top: 1em;
+}
+
 .challenge {
   font-size: 2em;
   background-color: $challenge-bg-color;
   border-radius: 0.1em;
-  margin: 0.3em;
 
   h2 {
     margin: 0; 
