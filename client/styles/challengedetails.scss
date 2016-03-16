@@ -3,7 +3,8 @@
 }
 
 .challengeDetails__participants {
-  background-color: white;
+  background-color: #2D7475;
+  max-width: 50em;
 }
 
 .challengeDetails__participants__header {
@@ -13,4 +14,22 @@
   background-color: #206276;
   border-radius: 0.1em 0.1em 0 0;
   color: #FAEBD7;
+}
+
+.challengeDetails__participants__body {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.challengeDetails__participant {
+  background-color: white;
+  display: flex;
+  align-items: center;
+  margin: 1em;
+  img {
+    width: 5em;
+    height: 5em;
+    margin: 0.6em;
+  }
 }

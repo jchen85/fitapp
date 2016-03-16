@@ -6,7 +6,12 @@ export default class Participant extends Component {
     const { participant } = this.props;
     return (
       <div className="challengeDetails__participant">
-        {participant.name}
+        <img src={participant.avatar} />
+        <div className="challengeDetails__participant__info">
+          <b>{participant.name},&nbsp;{participant.age}</b>
+          <p>Team: {participant.team} Carrots: {participant.points}</p>
+          <p></p>
+        </div>
       </div>
     );
   }

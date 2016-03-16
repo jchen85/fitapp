@@ -20,7 +20,9 @@ export default class ChallengeDetails extends Component {
           <div className="challengeDetails__participants__header">
             Participants
           </div>
-          {participants}
+          <div className="challengeDetails__participants__body">
+            {participants}
+          </div>
         </div>
       </div>
     );
