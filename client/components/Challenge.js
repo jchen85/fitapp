@@ -41,7 +41,7 @@ export default class Challenge extends Component {
       goalDescription = `Be active for ${challenge.requirement} mins!`;
     }
     if (challenge.category === 'distance') {
-      goalDescription = `Move ${challenge.requirement} miles!`;
+      goalDescription = `Run/Walk ${challenge.requirement} miles!`;
     }
 
     let goalImage = null;

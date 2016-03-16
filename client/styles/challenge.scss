@@ -50,6 +50,10 @@ $challenge-join-color: #4cc2c4;
   height: auto;
 }
 
+.challenge__mainInfo {
+  min-width: 10em;
+}
+
 .challenge__join {
   display: flex;
   flex-direction: column;
