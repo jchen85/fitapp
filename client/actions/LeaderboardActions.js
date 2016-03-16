@@ -16,11 +16,7 @@ export function setTeamScores(data) {
 
 export function fetchLeaderboard(team) {
   return (dispatch) => {
-    const request = new Request(`/users/top/${team}`, {
-      method: 'get'
-    });
-
-    return fetch(request)
+    return fetch(`/users/top/${team}`)
       .then(response => response.json())
       .then(json => {
         dispatch(setLeaderboard(json));
@@ -30,11 +26,7 @@ export function fetchLeaderboard(team) {
 
 export function fetchTeamScores() {
   return (dispatch) => {
-    const request = new Request('/teams', {
-      method: 'get'
-    });
-
-    return fetch(request)
+    return fetch('/teams')
       .then(response => response.json())
       .then(json => {
         dispatch(setTeamScores(json));

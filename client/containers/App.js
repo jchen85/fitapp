@@ -6,7 +6,7 @@ import Store from './Store';
 import Home from './Home';
 import Leaderboard from './Leaderboard';
 import ChallengeDetails from './ChallengeDetails';
-import Help from './Help';
+import Help from '../components/Help';
 
 export default class App extends Component {
   render() {
