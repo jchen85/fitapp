@@ -4,7 +4,7 @@
 
 A team-based multiplayer game that provides fitness challenges. Uses the Fitbit API to collect user data and determine whether challenges have been completed. Users are awarded Carrots and powerups to incentivize play.
 
-[View demo](http://107.170.214.235/) 
+[View demo](http://107.170.214.235/). Best viewed in Chrome.
 ````
 Login: jaylum@gmail.com
 Password: salesforce
