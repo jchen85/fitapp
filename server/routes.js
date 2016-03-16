@@ -8,6 +8,7 @@ const loggedIn = (req, res, next) => {
   if (req.user) {
     next();
   } else {
+    console.log('no session')
     res.redirect('/auth/fitbit');
   }
 };
@@ -54,4 +55,9 @@ app.get('/teams', (req, res) => {
   .catch(err => {
     if (err) throw err;
   });
+});
+
+// Put this at the end so client side routing will work
+app.get('*', (request, response) => {
+  response.sendFile(path.resolve(__dirname, '../index.html'));
 });

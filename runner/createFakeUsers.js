@@ -12,7 +12,7 @@ const addFakeUserToDb = () => {
 };
 
 const addFakeUserToChallenge = () => {
-  r.db('fitapp').table('users').filter({fake:true}).sample(1)
+  r.db('fitapp').table('users').filter({ fake: true }).sample(1)
   .run(connection)
   .then((fakeUser) => {
     r.db('fitapp').table('challenges').sample(1).update({
@@ -25,9 +25,11 @@ const addFakeUserToChallenge = () => {
   });
 };
 
+/* Turned off when there are enough fake users
 setInterval(() => {
   addFakeUserToDb();
 }, 2000);
+*/
 
 setInterval(() => {
   addFakeUserToChallenge();
