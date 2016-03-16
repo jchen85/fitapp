@@ -5,6 +5,7 @@ import { FitbitOAuth2Strategy } from 'passport-fitbit-oauth2';
 import passport from 'passport';
 import { app } from './server';
 import { addUser } from '../db/addUser';
+import credentials from './credentials';
 
 app.use(cookieParser());
 app.use(bodyParser.json());
@@ -18,8 +19,8 @@ app.use(session({
   saveUninitialized: true
 }));
 
-const CLIENT_ID = '227NBJ';
-const CLIENT_SECRET = 'aedb001f7aaf82f2382fef672f23b395';
+const CLIENT_ID = credentials.CLIENT_ID;
+const CLIENT_SECRET = credentials.CLIENT_SECRET;
 
 app.use(passport.initialize());
 app.use(passport.session({
