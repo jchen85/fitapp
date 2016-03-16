@@ -82,54 +82,12 @@ export default class Challenge extends Component {
             <img src={goalImage} />
           </div>
           <div className="challenge__mainInfo">
-            <h2>{goalDescription}</h2>
+            <h3>{goalDescription}</h3>
             <div className="challenge__reward">
               Reward: <div className="challenge__reward__amt">{challenge.reward}</div> {carrot}
             </div>
             <div className="challenge__participants">
               Participants: {challenge.members.length}
-              <ul>
-                <li><input type="checkbox" id="cb1"/><label for="cb1">Level 1</label>
-                  <ul>
-                    <li><input type="checkbox" id="cb2"/><label for="cb2">Level 2-A</label>
-                        <ul>
-                          <li><label>Level 3-A</label> Content</li>
-                          <li><label>Level 3-B</label> Content</li>
-                        </ul>
-                    </li>
-                    <li><input type="checkbox" id="cb3"/><label for="cb3">Level 2-B</label>
-                    <ul>
-                      <li><input type="checkbox" id="cb5"/><label for="cb5">Level 3-A</label>
-                        <ul>
-                          <li><label>Level 4-A</label> Content</li>
-                          <li><label>Level 4-B</label> Content</li>
-                          <li><label>Level 4-C</label> Content</li>
-                          <li><label>Level 4-D</label> Content</li>
-                        </ul>
-                      </li>
-                    <li><input type="checkbox" id="cb6"/><label for="cb6">Level 3-B</label>
-                        <ul>
-                          <li><label>Level 4-A</label> Content</li>
-                          <li><label>Level 4-B</label> Content</li>
-                        </ul>
-                      </li>
-                    <li><input type="checkbox" id="cb7"/><label for="cb7">Level 3-C</label>
-                        <ul>
-                          <li><label>Level 4-A</label> Content</li>
-                          <li><label>Level 4-B</label> Content</li>
-                          <li><label>Level 4-C</label> Content</li>
-                        </ul>
-                      </li>
-                  </ul>
-                    </li>
-                    <li><input type="checkbox" id="cb4"/><label for="cb4">Level 2-C</label>
-                        <ul>
-                          <li><label>Level 3-A</label> Content</li>
-                        </ul>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
             </div>
           </div>
           <div className="challenge__join">
