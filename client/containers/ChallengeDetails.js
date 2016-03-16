@@ -1,17 +1,26 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Challenge from '../components/Challenge';
+import Participant from '../components/Participant';
 import '../styles/challengedetails.scss';
 
 export default class ChallengeDetails extends Component {
   render() {
     const { params, challenges, actions, user } = this.props;
+    const thisChallenge = challenges[params.challenge];
+
+    const participants = thisChallenge.members.map((participant, i) => {
+      return <Participant participant={participant} key={i} />
+    });
 
     return (
       <div className="challengeDetails">
-        <Challenge challenge={challenges[params.challenge]} actions={actions} user={user} />
+        <Challenge challenge={thisChallenge} actions={actions} user={user} />
         <div className="challengeDetails__participants">
-
+          <div className="challengeDetails__participants__header">
+            Participants
+          </div>
+          {participants}
         </div>
       </div>
     );

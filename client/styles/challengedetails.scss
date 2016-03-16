@@ -1,3 +1,16 @@
 .challengeDetails {
   margin-top: 1em;
 }
+
+.challengeDetails__participants {
+  background-color: white;
+}
+
+.challengeDetails__participants__header {
+  display: flex;
+  justify-content: center;
+  margin-top: 0;
+  background-color: #206276;
+  border-radius: 0.1em 0.1em 0 0;
+  color: #FAEBD7;
+}
