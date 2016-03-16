@@ -20,12 +20,12 @@ app.use(require('webpack-dev-middleware')(compiler, {
 
 app.use(require('webpack-hot-middleware')(compiler));
 
-app.use(express.static(path.join(__dirname, '..')));
 
 module.exports = {
   app: app,
   io: io
 };
+
 
 // Fitbit OAuth routes and Passport config
 require('./fitbitauth');
@@ -34,8 +34,6 @@ require('./fitbitauth');
 require('./routes');
 
 // Socket configuration
-
-
 require('./socket.js');
 
 server.listen(3000);

@@ -3,13 +3,14 @@ import { app } from './server';
 import { getUser } from '../db/getUser';
 import { getLeaderboard } from '../db/getLeaderboard';
 import { getTeamScores } from '../db/getTeamScores';
+import express from 'express';
 
-const loggedIn = (req, res, next) => {
+export const loggedIn = (req, res, next) => {
   if (req.user) {
     next();
   } else {
     console.log('no session')
-    res.redirect('/auth/fitbit');
+    res.sendFile(path.join(__dirname, '..', 'static', 'landing.html'));
   }
 };
 
@@ -57,7 +58,16 @@ app.get('/teams', (req, res) => {
   });
 });
 
-// Put this at the end so client side routing will work
-app.get('*', (request, response) => {
+app.get('/logout', (req, res) => {
+  req.session.destroy(err => {
+    if (err) throw err;
+  });
+  res.redirect('/');
+});
+
+// Static files
+app.use(express.static(path.join(__dirname, '..')));
+
+app.get('*', loggedIn, function (request, response) {
   response.sendFile(path.resolve(__dirname, '../index.html'));
 });
