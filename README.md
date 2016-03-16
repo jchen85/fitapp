@@ -4,7 +4,8 @@
 
 A team-based multiplayer game that provides fitness challenges. Uses the Fitbit API to collect user data and determine whether challenges have been completed. Users are awarded Carrots and powerups to incentivize play.
 
-[See the demo](http://107.170.214.235/)
+[View demo](http://107.170.214.235/). Contact me if you need a Fitbit login.
+
 Author: [Jay Chen](https://github.com/jchen85/) | [jchen85.github.io](https://jchen85.github.io)
 
 ***
@@ -41,4 +42,13 @@ Like many games, FitQuest provides a short set of instructions on the home page 
 ***
 
 ### Instructions for repo use
-  Clone this repo. Obtain a Fitbit developer account and API keys and edit the appropriate lines in `server/fitbitauth.js`. Provision a RethinkDB database and edit the database config file in `db/config.js`. Run `node server/server.js` to start the production server, or `node devServer.js` for the development server.
+1. Clone this repo. 
+2. Obtain a Fitbit developer account and API keys. Create a file called `server/credentials.js`. Edit the contents of `server/credentials.js` to:
+````  
+export default {
+  CLIENT_ID: 'CLIENT_ID',
+  CLIENT_SECRET: 'CLIENT_SECRET'
+};
+````
+3. Provision a RethinkDB database and edit the database config file in `db/config.js`. 
+4. Run `node server/server.js` to start the production server, or `node devServer.js` for the development server.
