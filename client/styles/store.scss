@@ -1,0 +1,16 @@
+.store__container {
+  background-color: #4cc2c4;
+  padding: 1em;
+  margin: 1em;
+}
+
+.store__entries__container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.store__entry {
+  background-color: white;
+  padding: 1em;
+  margin: 1em;
+}

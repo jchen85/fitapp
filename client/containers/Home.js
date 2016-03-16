@@ -10,6 +10,12 @@ import SideBar from './SideBar';
 import Prize from './Prize';
 
 class Home extends Component {
+  
+  constructor(props, context) {
+    super(props);
+    context.router // will work
+  }
+
   componentDidMount() {
     const { actions } = this.props;
 
@@ -26,15 +32,16 @@ class Home extends Component {
   }
 
   render() {
-    const { challenges, actions, user } = this.props;
-
+    const { actions, user, routes } = this.props;
+    window.props = this.props;
     return (
       <div className="main__app__container">
         <UserInfo actions={actions} user={user} />
         <div className="main__body__container">
           <SideBar user={user} />
           {this.props.children}
-          <Prize />
+          {!routes[1].path ? <Prize /> : <div />} {/* Render the prize panel
+                                                    only on the challenge route */}
         </div>
       </div>
     );
@@ -42,9 +49,9 @@ class Home extends Component {
 }
 
 Home.propTypes = {
-  challenges: PropTypes.object.isRequired,
   actions: PropTypes.object.isRequired,
-  user: PropTypes.object.isRequired
+  user: PropTypes.object.isRequired,
+  routes: PropTypes.array.isRequired
 };
 
 function mapStateToProps(state) {
