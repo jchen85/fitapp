@@ -18,8 +18,6 @@ $challenge-join-color: #4cc2c4;
 .prize__card img {
   height: 5em;
   margin-top: 1em;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .prize__card {
@@ -52,7 +50,8 @@ $challenge-join-color: #4cc2c4;
 
 .prize__descr {
   width: 15em;
-  padding: 0em 1em 0em 1em;
+  margin-left: 1em;
+  margin-right: 1em;
 }
 
 .carrot {
