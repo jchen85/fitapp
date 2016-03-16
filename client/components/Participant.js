@@ -9,8 +9,8 @@ export default class Participant extends Component {
         <img src={participant.avatar} />
         <div className="challengeDetails__participant__info">
           <b>{participant.name},&nbsp;{participant.age}</b>
-          <p>Team: {participant.team} Carrots: {participant.points}</p>
-          <p></p>
+          <p>Team: {participant.team} </p>
+          <p>{participant.points}<div className="carrot"/></p>
         </div>
       </div>
     );

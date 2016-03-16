@@ -5,7 +5,7 @@ import { getLeaderboard } from '../db/getLeaderboard';
 import { getTeamScores } from '../db/getTeamScores';
 import express from 'express';
 
-export const loggedIn = (req, res, next) => {
+export let loggedIn = (req, res, next) => {
   if (req.user) {
     next();
   } else {
@@ -13,6 +13,13 @@ export const loggedIn = (req, res, next) => {
     res.sendFile(path.join(__dirname, '..', 'static', 'landing.html'));
   }
 };
+
+// This is to make it easier to develop locally without having to change the Fitbit OAuth redirect url
+if (process.env.NODE_ENV !== 'production') {
+  loggedIn = (req, res, next) => {
+    next();
+  };
+}
 
 app.get('/', loggedIn, (req, res) => {
   // request({
