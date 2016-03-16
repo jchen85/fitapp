@@ -31,7 +31,7 @@ const fitbitStrategy = new FitbitOAuth2Strategy({
   clientID: CLIENT_ID,
   clientSecret: CLIENT_SECRET,
   scope: ['activity', 'heartrate', 'location', 'profile'],
-  callbackURL: 'http://107.170.214.235/auth/fitbit/callback'
+  callbackURL: 'http://192.168.99.100/auth/fitbit/callback'
 }, (accessToken, refreshToken, profile, done) => {
   // TODO: save accessToken here for later use
 

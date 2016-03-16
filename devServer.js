@@ -1,10 +1,17 @@
+
+// Enable ES6 transpile
+require('babel-register');
+
 const path = require('path');
 const express = require('express');
 const webpack = require('webpack');
-const config = require('./webpack.config.dev');
+const config = require('../webpack.config.dev');
 
 const app = express();
 const compiler = webpack(config);
+
+const server = require('http').Server(app);
+const io = require('socket.io')(server);
 
 app.use(require('webpack-dev-middleware')(compiler, {
   noInfo: true,
@@ -13,15 +20,20 @@ app.use(require('webpack-dev-middleware')(compiler, {
 
 app.use(require('webpack-hot-middleware')(compiler));
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
-});
 
-app.listen(3000, 'localhost', (err) => {
-  if (err) {
-    console.log(err);
-    return;
-  }
+module.exports = {
+  app: app,
+  io: io
+};
 
-  console.log('Listening at http://localhost:3000');
-});
+
+// Fitbit OAuth routes and Passport config
+require('./fitbitauth');
+
+// All other routes
+require('./routes');
+
+// Socket configuration
+require('./socket.js');
+
+server.listen(3000);
