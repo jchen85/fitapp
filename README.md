@@ -5,11 +5,10 @@
 A team-based multiplayer game that provides fitness challenges. Uses the Fitbit API to collect user data and determine whether challenges have been completed. Users are awarded Carrots and powerups to incentivize play.
 
 [View demo](http://107.170.214.235/) 
-
-`Login: jaylum@gmail.com`
-
-`Password: salesforce`
-
+````
+Login: jaylum@gmail.com
+Password: salesforce
+````
 Author: [Jay Chen](https://github.com/jchen85/) | [jchen85.github.io](https://jchen85.github.io)
 
 ***
