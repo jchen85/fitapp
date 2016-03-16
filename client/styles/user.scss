@@ -1,10 +1,10 @@
 .user {
   top: 0;
-  height: 5em;
   background-color: white;
   z-index: 1;
-  padding: 1em 1em 0 2em;
+  padding: 1em 1em 1em 1em;
   display: flex;
+  max-width: 55em;
 }
 
 .user__carrot__container {
@@ -14,21 +14,13 @@
   font-weight: bolder;
 }
 
-.user__carrot {
-  background-image: url(https://cdn2.iconfinder.com/data/icons/thesquid-ink-40-free-flat-icon-pack/64/carrot-512.png);
-  background-size: 2em;
-  background-repeat: no-repeat;
-  background-color: white;
-  border: 1px solid black;
-  width: 2em;
-  height: 2em;
-  border-radius: 50%;
-  margin-left: 5px;
-}
-
 .user__date {
   position: absolute;
   top: 5vh;
   left: 1em;
   font-size: 1.5em;
+}
+
+.user__statement__container h3 {
+  margin: 0.3em 0 0.5em 0;
 }

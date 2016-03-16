@@ -18,14 +18,14 @@ export default class Prize extends Component {
     return (
       <div className="prize">
         <div className="prize__header">
+          <h3>Today's reward:</h3>
         </div>
-        Today's prize:
         <Card type={CardTypes.Speedwalk} />
         <div className="prize__leader">
           <div className="prize__leader__header">Today's Leader</div>
             <h3>{teamScores[0].group}</h3>
           <div className="prize__leader__desc">
-            If {teamScores[0].group} has the highest score at midnight, all Delta team members will receive Speedwalk in their inventory.
+            If {teamScores[0].group} has the highest score at midnight, all {teamScores[0].group} team members will receive Speedwalk in their inventory.
           </div>
         </div>
       </div>

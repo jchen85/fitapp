@@ -12,13 +12,8 @@ export default class UserInfo extends Component {
     return (
       <div className="user">
         <div className="user__statement__container">
-          Hi, {user.name}. Today is&nbsp;{moment().format('dddd, MMMM Do YYYY')}. You have until midnight to complete challenges for today!
-          <div className="user__achievements__container">
-            Progress to next achievement:
-          </div>
-        </div>
-        <div className="user__carrot__container">
-          {user.points} {carrot}
+          <h3>Hi, {user.name}. Today you'll be playing for {user.team} Team.</h3> 
+          You have until midnight to complete challenges for&nbsp;{moment().format('dddd, MMMM Do YYYY')}. At midnight, all carrots are reset to 1000 and everyone is randomly placed on a new team. You only keep your powerups, so spend your carrots wisely!
         </div>
       </div>
     );

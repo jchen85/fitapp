@@ -1,7 +1,24 @@
 .store__container {
   background-color: #2D7475;
-  padding: 1em;
   margin: 1em;
+}
+
+.store__header {
+  display: flex;
+  justify-content: center;
+  margin-top: 0;
+  border-radius: 0.1em 0.1em 0 0;
+  background-color: #206276;
+  color: #FAEBD7;
+}
+
+.store__header h2 {
+  margin: 0;
+}
+
+.store__welcome {
+  color: white;
+  margin: 1em 1em 0;
 }
 
 .store__entries__container {

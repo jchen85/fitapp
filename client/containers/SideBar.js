@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import '../styles/sidebar.scss';
-import { browserHistory } from 'react-router'
 
 export default class SideBar extends Component {
   render() {
@@ -19,9 +18,16 @@ export default class SideBar extends Component {
           <div className="sidebar__team__info">
             Team: {user.team}
           </div>
-          Inventory
-          <div className="sidebar__carrots">
-            {user.points} <div className="carrot" />
+          <div className="sidebar__inventory">
+            <header className="challenge__header">
+              Inventory
+            </header>
+            <div className="sidebar__carrots">
+              {user.points} <div className="sidebar__carrot" />
+            </div>
+            <div className="sidebar__powerups">
+              1 x <img src="../static/icons/utensils.png" />
+            </div>
           </div>
         </div>
         <div className="sidebar__nav">

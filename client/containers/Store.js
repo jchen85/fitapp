@@ -7,8 +7,12 @@ export default class Store extends Component {
   render() {
     return (
       <div className="store__container">
-        <h2>Welcome to the store!</h2>
-        Spend your carrots on powerups to help you perform better
+        <header className="store__header">
+          <h2>Store</h2>
+        </header>
+        <div className="store__welcome">
+          Spend your carrots on powerups to help you perform better
+        </div>
         <div className="store__entries__container">
           <StoreEntry type={CardTypes.Speedwalk} />
           <StoreEntry type={CardTypes.MagicUtensils} />

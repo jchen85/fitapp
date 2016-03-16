@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { socket } from '../index';
+import '../styles/main.scss';
 
 import * as UserActions from '../actions/UserActions';
 import * as ChallengesActions from '../actions/ChallengesActions';

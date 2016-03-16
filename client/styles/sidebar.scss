@@ -1,6 +1,6 @@
 .sidebar {
   background-color: white;
-  margin: 1em 0 0 0;
+  margin: 1em 1em 0 0;
   padding: 0.5em;
 }
 
@@ -8,9 +8,6 @@
   font-size: 1.5em;
 }
 
-.sidebar__carrots {
-  display: flex;
-}
 
 .sidebar__image img {
   max-width: 5em;
@@ -19,8 +16,26 @@
 .sidebar__user__container {
   display: flex;
   flex-flow: column;
+}
+
+.sidebar__inventory {
+  margin-top: 0.5em;
+  border: 1px solid black;
+}
+
+.sidebar__carrots {
+  display: flex;
   align-items: center;
-  justify-content: center;
+  font-size: 1.5em;
+  margin: 0.3em;
+}
+
+.sidebar__powerups {
+  @extend .sidebar__carrots;
+}
+
+.sidebar__powerups img {
+  width: 1.2em;
 }
 
 .sidebar__nav {
@@ -54,4 +69,16 @@
   width: 1em;
   height: 1em;
   margin-right: 0.2em;
+}
+
+.sidebar__carrot {
+  background-image: url(https://cdn2.iconfinder.com/data/icons/thesquid-ink-40-free-flat-icon-pack/64/carrot-512.png);
+  background-size: 1.5em;
+  background-repeat: no-repeat;
+  background-color: white;
+  border: 1px solid black;
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 50%;
+  margin-left: 5px;
 }

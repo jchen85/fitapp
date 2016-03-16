@@ -15,7 +15,7 @@ export default class Prize extends Component {
           <p>Duration: {type.duration}</p>
         </div>
         <img src={type.image} />
-        <h3>{type.name}</h3>
+        <h3>Powerup: {type.name}</h3>
         <p className="prize__descr">{type.description}</p>
       </div>
     );

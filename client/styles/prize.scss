@@ -4,7 +4,7 @@ $challenge-join-color: #4cc2c4;
 
 .prize {
   background-color: $prize-bg-color;
-  margin-top: 1em;
+  margin: 1em 0 0 1em;
   display: none;
   @media screen 
     and (min-device-width: 1200px) 
@@ -13,6 +13,14 @@ $challenge-join-color: #4cc2c4;
 
     display: inline;
   }
+}
+
+.prize__header {
+  color: #FAEBD7;
+  color: white;
+  margin-left: 1em;
+  margin-right: 1em;
+  max-width: 16em;
 }
 
 .prize__card img {
