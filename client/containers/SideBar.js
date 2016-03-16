@@ -40,6 +40,16 @@ export default class SideBar extends Component {
               <img src="../static/icons/trophy.png" />Leaderboard
             </Link>
           </div>
+          <div className="sidebar__link">
+            <Link to="/help">
+              <img src="../static/icons/help.png" />Help
+            </Link>
+          </div>
+          <div className="sidebar__link">
+            <a href="/logout">
+              <img src="../static/icons/exit.png" />Logout
+            </a>
+          </div>
         </div>
       </div>
     );
