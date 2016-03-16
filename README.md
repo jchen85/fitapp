@@ -43,12 +43,12 @@ Like many games, FitQuest provides a short set of instructions on the home page 
 
 ### Instructions for repo use
 1. Clone this repo. 
-2. Obtain a Fitbit developer account and API keys. Create a file called `server/credentials.js`. Edit the contents of `server/credentials.js` to:
-````  
-export default {
-  CLIENT_ID: 'CLIENT_ID',
-  CLIENT_SECRET: 'CLIENT_SECRET'
-};
-````
+2. Obtain a Fitbit developer account and API keys. Create a file called `server/credentials.js`. Edit the contents of `server/credentials.js` to:  
+  ````  
+  export default {
+    CLIENT_ID: 'CLIENT_ID',
+    CLIENT_SECRET: 'CLIENT_SECRET'
+  };
+  ````
 3. Provision a RethinkDB database and edit the database config file in `db/config.js`. 
 4. Run `node server/server.js` to start the production server, or `node devServer.js` for the development server.
