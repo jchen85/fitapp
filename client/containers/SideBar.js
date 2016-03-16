@@ -25,31 +25,31 @@ export default class SideBar extends Component {
           </div>
         </div>
         <div className="sidebar__nav">
-          <div className="sidebar__link">
-            <Link to="/">
+          <Link to="/">
+            <div className="sidebar__link">
               <img src="../static/icons/clock.png" />Challenges
-            </Link>
-          </div>
-          <div className="sidebar__link">
-            <Link to="/store">
+            </div>
+          </Link>
+          <Link to="/store">
+            <div className="sidebar__link">
               <img src="../static/icons/cart.png" />Store
-            </Link>
-          </div>
-          <div className="sidebar__link">
-            <Link to="/leaderboard">
+            </div>
+          </Link>
+          <Link to="/leaderboard">
+            <div className="sidebar__link">
               <img src="../static/icons/trophy.png" />Leaderboard
-            </Link>
-          </div>
-          <div className="sidebar__link">
-            <Link to="/help">
+            </div>
+          </Link>
+          <Link to="/help">
+            <div className="sidebar__link">
               <img src="../static/icons/help.png" />Help
-            </Link>
-          </div>
-          <div className="sidebar__link">
-            <a href="/logout">
+            </div>
+          </Link>
+          <a href="/logout">
+            <div className="sidebar__link">
               <img src="../static/icons/exit.png" />Logout
-            </a>
-          </div>
+            </div>
+          </a>
         </div>
       </div>
     );
