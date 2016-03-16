@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import { Link } from 'react-router';
 import '../styles/challenge.scss';
 import moment from 'moment';
 import '@gigwalk/livestamp';
@@ -89,6 +90,9 @@ export default class Challenge extends Component {
             <div className="challenge__participants">
               Participants: {challenge.members.length}
             </div>
+            <Link to={`/challenges/${challenge.id}`}>
+              Details
+            </Link>
           </div>
           <div className="challenge__join">
             Interested?
