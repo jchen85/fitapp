@@ -15,37 +15,27 @@ body {
   display: flex;
   justify-content: center;
   font-family: 'Open Sans', 'Raleway', sans-serif;
+
+  @media screen 
+    and (min-device-width: 1200px) 
+    and (max-device-width: 1600px) 
+    and (-webkit-min-device-pixel-ratio: 1) { 
+  
+    font-size: 0.75em;
+  }
+
+
 }
 
 .main__body__content {
-  padding-top: 2em;
+  float: right;
+  max-height: 50vh;
+  position: relative;
+  display: block;
 }
 
 .main__body__container {
   display: flex;
   justify-content: space-around;
-}
-
-.main-app-nav {
-  font-size: 2em;
-  text-align: center;
-}
-
-footer {
-  font-size: 0.75em;
-  text-align: center;
-  padding-top: 10em;
-
-  a {
-    text-decoration: none;
-    color: inherit;
-
-    &:hover {
-      color: $accent-blue;
-    }
-  }
-
-  #heart{
-    color: $accent-red;
-  }
+  position: relative;
 }

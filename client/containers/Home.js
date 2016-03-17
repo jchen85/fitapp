@@ -34,9 +34,11 @@ class Home extends Component {
         <UserInfo actions={actions} user={user} />
         <div className="main__body__container">
           <SideBar user={user} />
-          {this.props.children}
-          {!routes[1].path ? <Prize /> : <div />} {/* Render the prize panel
+          <div className="main__body__content">
+            {this.props.children}
+            {!routes[1].path ? <Prize /> : <div />} {/* Render the prize panel
                                                     only on the challenge route */}
+          </div>
         </div>
       </div>
     );
