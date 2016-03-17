@@ -1,6 +1,6 @@
 # FitQuest
 
-![FitQuest](http://i.imgur.com/ZgR3k5m.png)
+![FitQuest](http://i.imgur.com/10q8REB.png)
 
 A team-based multiplayer game that provides fitness challenges. Uses the Fitbit API to collect user data and determine whether challenges have been completed. Users are awarded Carrots and powerups to incentivize play.
 
