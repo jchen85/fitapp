@@ -15,16 +15,7 @@ body {
   display: flex;
   justify-content: center;
   font-family: 'Open Sans', 'Raleway', sans-serif;
-
-  @media screen 
-    and (min-device-width: 1200px) 
-    and (max-device-width: 1600px) 
-    and (-webkit-min-device-pixel-ratio: 1) { 
-  
-    font-size: 0.75em;
-  }
-
-
+  font-size: 16px;
 }
 
 .main__body__content {
