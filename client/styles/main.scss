@@ -15,7 +15,11 @@ body {
   display: flex;
   justify-content: center;
   font-family: 'Open Sans', 'Raleway', sans-serif;
-  font-size: 16px;
+  font-size: 30px;
+  @media screen 
+    and (min-device-width: 1200px) { 
+    font-size: 16px;
+  }
 }
 
 .main__body__content {
