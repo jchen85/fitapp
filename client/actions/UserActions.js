@@ -13,17 +13,14 @@ export function updateUserInfo(data) {
 // happen over sockets and use updateUserInfo
 export function fetchUserInfo() {
   return (dispatch) => {
-    const request = new Request('/users/profile', {
-      method: 'get'
-    });
-
-    return fetch(request, { credentials: 'include' })
-    // credentials must be included because the /users/profile endpoint
-    // requires you to be logged in and cookied
-      .then(response => response.json())
-      .then(json => {
-        dispatch(updateUserInfo(json));
-        socket.emit('joinGame', json.id);
-      });
+    dispatch(updateUserInfo({
+      id: 1,
+      name: 'Jay',
+      age: 30,
+      points: 1000,
+      avatar: 'http://i.imgur.com/sEX3UCS.png',
+      team: 'Bravo'
+    }));
+    socket.emit('joinGame', 1);
   };
 }

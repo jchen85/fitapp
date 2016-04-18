@@ -19,14 +19,10 @@ body {
 }
 
 .main__body__content {
-  float: right;
   max-height: 50vh;
-  position: relative;
-  display: block;
 }
 
 .main__body__container {
   display: flex;
   justify-content: space-around;
-  position: relative;
 }

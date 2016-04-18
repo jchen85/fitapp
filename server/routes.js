@@ -21,7 +21,7 @@ if (process.env.NODE_ENV !== 'production') {
   };
 }
 
-app.get('/', loggedIn, (req, res) => {
+app.get('/', (req, res) => {
   // request({
   //   url: 'https://api.fitbit.com/1/user/4DJTY5/profile.json',
   //   headers: {
